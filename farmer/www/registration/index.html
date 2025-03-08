@@ -1,0 +1,23 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<h2>User Registration</h2>
+
+<form id="register-form">
+    <input type="text" id="first_name" placeholder="First Name" required />
+    <input type="text" id="last_name" placeholder="Last Name" required />
+    <input type="tel" id="phone" placeholder="Phone" required /> <!-- 🔥 Replaced username with phone -->
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="new_password" placeholder="Password" required />
+    <button type="submit">Register</button>
+</form>
+
+<script>
+    frappe.ready(() => {
+        console.log("CSRF Token:", frappe.csrf_token);
+    });
+</script>
+
+<script src="/assets/farmer/js/registration.js"></script>
+
+{% endblock %}

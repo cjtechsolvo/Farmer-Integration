@@ -170,14 +170,17 @@ app_license = "mit"
 # -------
 
 # before_tests = "farmer.install.before_tests"
+app_include_js = "/assets/farmer/js/registration.js"
 
+define_csrf = 1
 # Overriding Methods
 # ------------------------------
 #
-# override_whitelisted_methods = {
-# 	"frappe.desk.doctype.event.event.get_events": "farmer.event.get_events"
-# }
-#
+override_whitelisted_methods = {
+     "farmer.api.user_api.create_user": "farmer.api.user_api.create_user",
+     "farmer.api.user_api.login": "farmer.api.user_api.login"
+}
+
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
 # along with any modifications made in other Frappe apps
