@@ -1,0 +1,124 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-03-10 15:41:26.146790",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "site_name",
+  "date_created",
+  "state",
+  "local_government_area",
+  "pue_estimate_percent",
+  "section_break_0sbp",
+  "power_rating",
+  "developer",
+  "status",
+  "prosible_crops",
+  "pue_estimate_kw",
+  "section_break_vfe8",
+  "equipment_name"
+ ],
+ "fields": [
+  {
+   "fieldname": "site_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Site Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "date_created",
+   "fieldtype": "Date",
+   "label": "Date Created"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "State",
+   "reqd": 1
+  },
+  {
+   "fieldname": "power_rating",
+   "fieldtype": "Percent",
+   "label": "Power Rating (KW)"
+  },
+  {
+   "fieldname": "developer",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Developer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Prospective\nUnder Construction\nCommissioned"
+  },
+  {
+   "fieldname": "section_break_0sbp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "local_government_area",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Local Government Area (LGA)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "prosible_crops",
+   "fieldtype": "Data",
+   "label": "Possible Crops",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_vfe8",
+   "fieldtype": "Section Break",
+   "label": "Site Capacity - Equipment"
+  },
+  {
+   "fieldname": "pue_estimate_percent",
+   "fieldtype": "Percent",
+   "label": "PUE Estimate (%):"
+  },
+  {
+   "fieldname": "pue_estimate_kw",
+   "fieldtype": "Int",
+   "label": "PUE Estimate (kw):"
+  },
+  {
+   "fieldname": "equipment_name",
+   "fieldtype": "Table",
+   "label": "Equipment Name",
+   "options": "Site Equipment Table"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-03-10 16:49:29.430836",
+ "modified_by": "Administrator",
+ "module": "Farmer",
+ "name": "Site",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

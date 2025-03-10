@@ -1,0 +1,42 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-03-10 16:14:36.398304",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "equipment_name",
+  "allocation",
+  "rating"
+ ],
+ "fields": [
+  {
+   "fieldname": "equipment_name",
+   "fieldtype": "Data",
+   "label": "Equipment Name"
+  },
+  {
+   "fieldname": "allocation",
+   "fieldtype": "Percent",
+   "label": "Allocation (1-100%):"
+  },
+  {
+   "fieldname": "rating",
+   "fieldtype": "Percent",
+   "label": "Rating (kw):"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-03-10 16:17:06.847479",
+ "modified_by": "Administrator",
+ "module": "Farmer",
+ "name": "Site Equipment Table",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

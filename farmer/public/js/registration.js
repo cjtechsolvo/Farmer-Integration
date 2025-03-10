@@ -1,5 +1,5 @@
 frappe.ready(() => {
-    console.log("CSRF Token from JS File:", frappe.csrf_token); // Debug CSRF Token
+    console.log("CSRF Token from JS File:", frappe.csrf_token);
 
     document.getElementById("register-form").onsubmit = async function (e) {
         e.preventDefault();
@@ -8,9 +8,9 @@ frappe.ready(() => {
         let formData = {
             first_name: document.getElementById("first_name").value,
             last_name: document.getElementById("last_name").value,
-            phone: document.getElementById("phone").value, // 🔥 Replaced username with phone
+            phone: document.getElementById("phone").value, 
             email: document.getElementById("email").value,
-            new_password: document.getElementById("new_password").value, // ✅ Added Password
+            new_password: document.getElementById("new_password").value, 
         };
 
         console.log("Form Data:", formData);

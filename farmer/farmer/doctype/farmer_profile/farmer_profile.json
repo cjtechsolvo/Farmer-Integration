@@ -1,0 +1,126 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-03-10 11:57:34.928068",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "full_name",
+  "contact_number",
+  "email_id",
+  "address",
+  "site",
+  "crops_farms",
+  "equipment_owned",
+  "equipment_loans",
+  "bank_details",
+  "bank_name",
+  "account_number",
+  "ecommerce_access",
+  "delivery_agent",
+  "technician",
+  "tasks_cases"
+ ],
+ "fields": [
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name\t"
+  },
+  {
+   "fieldname": "contact_number",
+   "fieldtype": "Phone",
+   "label": "Contact Number\t"
+  },
+  {
+   "fieldname": "email_id",
+   "fieldtype": "Data",
+   "label": "Email ID"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "site",
+   "fieldtype": "Data",
+   "label": "Site/Community"
+  },
+  {
+   "fieldname": "crops_farms",
+   "fieldtype": "Data",
+   "label": "Crops & Farms"
+  },
+  {
+   "fieldname": "equipment_owned",
+   "fieldtype": "Data",
+   "label": "Equipment Owned"
+  },
+  {
+   "fieldname": "equipment_loans",
+   "fieldtype": "Data",
+   "label": "Equipment Loans"
+  },
+  {
+   "fieldname": "bank_details",
+   "fieldtype": "Tab Break",
+   "label": "Bank Account Details"
+  },
+  {
+   "fieldname": "bank_name",
+   "fieldtype": "Data",
+   "label": "Bank Name"
+  },
+  {
+   "fieldname": "account_number",
+   "fieldtype": "Data",
+   "label": "Account Number"
+  },
+  {
+   "default": "0",
+   "fieldname": "ecommerce_access",
+   "fieldtype": "Check",
+   "label": "E-Commerce Access"
+  },
+  {
+   "fieldname": "delivery_agent",
+   "fieldtype": "Data",
+   "label": "Assigned Delivery Agent"
+  },
+  {
+   "fieldname": "technician",
+   "fieldtype": "Data",
+   "label": "Assigned Technician"
+  },
+  {
+   "fieldname": "tasks_cases",
+   "fieldtype": "Data",
+   "label": "Active Tasks/Cases"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-03-10 12:13:17.918318",
+ "modified_by": "Administrator",
+ "module": "Farmer",
+ "name": "Farmer Profile",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
