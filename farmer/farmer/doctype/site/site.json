@@ -17,7 +17,8 @@
   "prosible_crops",
   "pue_estimate_kw",
   "section_break_vfe8",
-  "equipment_name"
+  "equipment_name",
+  "assigned_farmer"
  ],
  "fields": [
   {
@@ -94,11 +95,17 @@
    "fieldtype": "Table",
    "label": "Equipment Name",
    "options": "Site Equipment Table"
+  },
+  {
+   "fieldname": "assigned_farmer",
+   "fieldtype": "Table",
+   "label": "Assigned Farmer",
+   "options": "Farmer Table"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-10 16:49:29.430836",
+ "modified": "2025-03-10 18:19:14.190494",
  "modified_by": "Administrator",
  "module": "Farmer",
  "name": "Site",
