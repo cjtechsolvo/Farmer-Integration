@@ -5,6 +5,7 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "details_section",
   "site_name",
   "date_created",
   "state",
@@ -14,11 +15,14 @@
   "power_rating",
   "developer",
   "status",
-  "prosible_crops",
   "pue_estimate_kw",
   "section_break_vfe8",
   "equipment_name",
-  "assigned_farmer"
+  "farmers_section",
+  "assigned_farmer",
+  "crops_section",
+  "possible_crops",
+  "actual_crops"
  ],
  "fields": [
   {
@@ -70,12 +74,6 @@
    "reqd": 1
   },
   {
-   "fieldname": "prosible_crops",
-   "fieldtype": "Data",
-   "label": "Possible Crops",
-   "reqd": 1
-  },
-  {
    "fieldname": "section_break_vfe8",
    "fieldtype": "Section Break",
    "label": "Site Capacity - Equipment"
@@ -101,11 +99,38 @@
    "fieldtype": "Table",
    "label": "Assigned Farmer",
    "options": "Farmer Table"
+  },
+  {
+   "fieldname": "possible_crops",
+   "fieldtype": "Table MultiSelect",
+   "label": "Possible Crops",
+   "options": "Possible Crop"
+  },
+  {
+   "fieldname": "actual_crops",
+   "fieldtype": "Table",
+   "label": "Actual Crops",
+   "options": "Actual Crop"
+  },
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Tab Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "farmers_section",
+   "fieldtype": "Tab Break",
+   "label": "Farmers"
+  },
+  {
+   "fieldname": "crops_section",
+   "fieldtype": "Tab Break",
+   "label": "Crops"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-10 18:19:14.190494",
+ "modified": "2025-03-11 12:51:38.562598",
  "modified_by": "Administrator",
  "module": "Farmer",
  "name": "Site",

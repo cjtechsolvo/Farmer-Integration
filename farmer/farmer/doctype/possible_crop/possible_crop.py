@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class FarmerInventory(Document):
+class PossibleCrop(Document):
 	pass

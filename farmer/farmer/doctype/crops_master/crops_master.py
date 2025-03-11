@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class Farmers(Document):
+class CropsMaster(Document):
 	pass
