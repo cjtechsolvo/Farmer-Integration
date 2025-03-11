@@ -176,6 +176,8 @@ app_include_js = [
     "assets/appname/js/customer_quick_entry.js"
 ]
 
+signup_form_template = "/www/registration/index.html"
+
 define_csrf = 1
 # Overriding Methods
 # ------------------------------

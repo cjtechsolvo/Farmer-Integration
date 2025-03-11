@@ -1,0 +1,50 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"gRVRk5X_7q\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Farmer</span>\",\"col\":12}},{\"id\":\"m5bpRPCOzP\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Site\",\"col\":3}},{\"id\":\"jq3P0_EXMZ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Crops Master\",\"col\":3}}]",
+ "creation": "2025-03-11 15:15:32.490134",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "today",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Farmer",
+ "links": [],
+ "modified": "2025-03-11 15:26:24.546229",
+ "modified_by": "Administrator",
+ "module": "Farmer",
+ "name": "Farmer",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "Farmer"
+  }
+ ],
+ "sequence_id": 23.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Site",
+   "link_to": "Site",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Crops Master",
+   "link_to": "Crops Master",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "Farmer"
+}
