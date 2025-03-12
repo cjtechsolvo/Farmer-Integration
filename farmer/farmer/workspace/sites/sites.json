@@ -1,0 +1,38 @@
+{
+ "charts": [
+  {
+   "chart_name": "Site Overview",
+   "label": "Site Overview"
+  },
+  {
+   "chart_name": "Site by Status",
+   "label": "Site by Status"
+  }
+ ],
+ "content": "[{\"id\":\"ELAV5u1T-Z\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Sites</span>\",\"col\":12}},{\"id\":\"luEn3ZCrt4\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Site by Status\",\"col\":6}},{\"id\":\"tMfv6BlsYX\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Site Overview\",\"col\":12}}]",
+ "creation": "2025-03-12 15:25:04.307468",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "map",
+ "idx": 0,
+ "indicator_color": "",
+ "is_hidden": 0,
+ "label": "Sites",
+ "links": [],
+ "modified": "2025-03-12 17:27:27.194340",
+ "modified_by": "Administrator",
+ "module": "Farmer",
+ "name": "Sites",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 24.0,
+ "shortcuts": [],
+ "title": "Sites"
+}

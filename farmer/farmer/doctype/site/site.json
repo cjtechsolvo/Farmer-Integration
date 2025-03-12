@@ -1,11 +1,12 @@
 {
  "actions": [],
- "allow_rename": 1,
+ "autoname": "SITE-.####",
  "creation": "2025-03-10 15:41:26.146790",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "details_section",
+  "section_break_xlmg",
   "site_name",
   "status",
   "power_rating",
@@ -53,14 +54,16 @@
   },
   {
    "fieldname": "developer",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Developer",
+   "options": "Site Developer",
    "reqd": 1
   },
   {
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Status",
    "options": "Prospective\nUnder Construction\nCommissioned"
   },
@@ -159,14 +162,19 @@
    "fieldname": "task",
    "fieldtype": "Data",
    "label": "Task"
+  },
+  {
+   "fieldname": "section_break_xlmg",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-11 17:59:15.941602",
+ "modified": "2025-03-12 16:56:41.001723",
  "modified_by": "Administrator",
  "module": "Farmer",
  "name": "Site",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -185,5 +193,18 @@
  "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Green",
+   "title": "Commissioned"
+  },
+  {
+   "color": "Gray",
+   "title": "Prospective"
+  },
+  {
+   "color": "Yellow",
+   "title": "Under Construction"
+  }
+ ]
 }
