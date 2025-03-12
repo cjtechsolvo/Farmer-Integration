@@ -1,0 +1,161 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-03-12 11:22:48.792817",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "farmer",
+  "farmer_name",
+  "phone_number",
+  "gender",
+  "status",
+  "column_break_ia6h",
+  "site",
+  "address",
+  "section_break_dz6e",
+  "farms",
+  "loans",
+  "loan",
+  "tasks",
+  "task",
+  "products",
+  "product",
+  "orders",
+  "order",
+  "repayments",
+  "repayment"
+ ],
+ "fields": [
+  {
+   "fieldname": "farmer",
+   "fieldtype": "Link",
+   "label": "Farmer",
+   "options": "User"
+  },
+  {
+   "fetch_from": "farmer.full_name",
+   "fieldname": "farmer_name",
+   "fieldtype": "Data",
+   "label": "Farmer Name"
+  },
+  {
+   "fetch_from": "farmer.phone",
+   "fieldname": "phone_number",
+   "fieldtype": "Data",
+   "label": "Phone Number"
+  },
+  {
+   "fetch_from": "farmer.gender",
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "label": "Gender"
+  },
+  {
+   "fieldname": "column_break_ia6h",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "site",
+   "fieldtype": "Link",
+   "label": "Site ",
+   "options": "Site"
+  },
+  {
+   "fieldname": "farms",
+   "fieldtype": "Table",
+   "label": "Farms",
+   "options": "Farm Table"
+  },
+  {
+   "fetch_from": "farmer.location",
+   "fieldname": "address",
+   "fieldtype": "Data",
+   "label": "Address"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Active\nInactive"
+  },
+  {
+   "fieldname": "loans",
+   "fieldtype": "Tab Break",
+   "label": "Loans"
+  },
+  {
+   "fieldname": "loan",
+   "fieldtype": "Data",
+   "label": "Loan"
+  },
+  {
+   "fieldname": "tasks",
+   "fieldtype": "Tab Break",
+   "label": "Tasks"
+  },
+  {
+   "fieldname": "task",
+   "fieldtype": "Data",
+   "label": "Task"
+  },
+  {
+   "fieldname": "products",
+   "fieldtype": "Tab Break",
+   "label": "Products"
+  },
+  {
+   "fieldname": "product",
+   "fieldtype": "Data",
+   "label": "Product"
+  },
+  {
+   "fieldname": "orders",
+   "fieldtype": "Tab Break",
+   "label": "Orders"
+  },
+  {
+   "fieldname": "order",
+   "fieldtype": "Data",
+   "label": "Order"
+  },
+  {
+   "fieldname": "repayments",
+   "fieldtype": "Tab Break",
+   "label": "Repayments"
+  },
+  {
+   "fieldname": "repayment",
+   "fieldtype": "Data",
+   "label": "Repayment"
+  },
+  {
+   "fieldname": "section_break_dz6e",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-03-12 12:46:52.346732",
+ "modified_by": "Administrator",
+ "module": "Farmer",
+ "name": "Farmer Master",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
