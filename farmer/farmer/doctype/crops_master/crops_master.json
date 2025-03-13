@@ -9,10 +9,11 @@
   "section_break_b9ok",
   "crop_name",
   "uom",
-  "number_of_site",
   "column_break_ssbt",
-  "volume",
-  "no_of_farms"
+  "no_of_farms",
+  "number_of_sites",
+  "section_break_1ltf",
+  "crop_child_table"
  ],
  "fields": [
   {
@@ -22,16 +23,6 @@
    "label": "Crop Name",
    "reqd": 1,
    "unique": 1
-  },
-  {
-   "fieldname": "number_of_site",
-   "fieldtype": "Int",
-   "label": "No of Sites"
-  },
-  {
-   "fieldname": "volume",
-   "fieldtype": "Data",
-   "label": "Volume"
   },
   {
    "fieldname": "no_of_farms",
@@ -53,11 +44,26 @@
    "label": "UOM",
    "options": "UOM",
    "reqd": 1
+  },
+  {
+   "fieldname": "section_break_1ltf",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "crop_child_table",
+   "fieldtype": "Table",
+   "label": "Crop Child Table",
+   "options": "Crop Child Table"
+  },
+  {
+   "fieldname": "number_of_sites",
+   "fieldtype": "Int",
+   "label": "No of Sites"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-12 17:19:10.926276",
+ "modified": "2025-03-13 16:02:46.501676",
  "modified_by": "Administrator",
  "module": "Farmer",
  "name": "Crops Master",

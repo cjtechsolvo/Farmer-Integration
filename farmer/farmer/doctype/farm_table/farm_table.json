@@ -33,11 +33,9 @@
    "label": "Latitude"
   },
   {
-   "fetch_from": "farm.crop_name",
    "fieldname": "crops",
-   "fieldtype": "Table MultiSelect",
-   "label": "Crops",
-   "options": "Possible Crop"
+   "fieldtype": "Data",
+   "label": "Crops"
   },
   {
    "fetch_from": "farm.documents",
@@ -55,7 +53,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-03-12 16:30:08.140679",
+ "modified": "2025-03-13 11:14:23.248316",
  "modified_by": "Administrator",
  "module": "Farmer",
  "name": "Farm Table",
