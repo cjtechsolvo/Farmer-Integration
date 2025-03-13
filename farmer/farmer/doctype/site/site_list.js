@@ -13,7 +13,7 @@ function add_site() {
             fieldname: 'site_image',
             options: `<div style="text-align: center;">
                         <img src="http://192.168.0.183:8004/files/farm-2.jpg" alt="Site Image"
-                            style="max-width: 100%; border-radius: 6px;"/>
+                            style="max-width: 100%; border-radius: 8px;"/>
                       </div>`
         },
         {
@@ -71,6 +71,7 @@ function add_site() {
             fieldname: 'has_pos',
             fieldtype: 'Check'
         },
+        
         {
             label: __('PUE Estimate (%)'),
             fieldname: 'pue_estimate_percent',
@@ -88,6 +89,7 @@ function add_site() {
     var dialog = new frappe.ui.Dialog({
         title: __('Add Site'),
         fields: fields,
+        primary_action_label: __('Save'),
         primary_action: function () {
             let values = dialog.get_values();
             if (values) {
@@ -118,9 +120,17 @@ function add_site() {
                     }
                 });
             }
-        },
-        primary_action_label: __('Save')
+        }
     });
+
+    dialog.set_secondary_action(function () {
+    dialog.hide(); // Close the dialog
+    frappe.new_doc('Site'); // Open a new Site form
+}, __('Edit in Full Form'));
+
+    setTimeout(() => {
+        $(".modal-footer .btn-secondary").text("Edit in Full Form");
+    }, 200);
 
     dialog.show();
     dialog.$wrapper.find('.modal-dialog').css("max-width", "60%");

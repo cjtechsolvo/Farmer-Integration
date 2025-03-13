@@ -159,7 +159,7 @@
   },
   {
    "fieldname": "id_number",
-   "fieldtype": "Int",
+   "fieldtype": "Data",
    "label": "ID Number"
   },
   {
@@ -184,7 +184,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-13 16:31:20.138419",
+ "modified": "2025-03-13 17:47:29.112853",
  "modified_by": "Administrator",
  "module": "Farmer",
  "name": "Farmer Master",
