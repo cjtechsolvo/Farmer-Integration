@@ -1,18 +1,26 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "FARMER-.####",
  "creation": "2025-03-12 11:22:48.792817",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "details_section",
   "farmer",
   "farmer_name",
   "phone_number",
-  "gender",
   "status",
   "column_break_ia6h",
   "site",
+  "gender",
   "address",
+  "bank_details_section",
+  "id_type",
+  "id_number",
+  "column_break_tm3z",
+  "bank_name",
+  "account_number",
   "section_break_dz6e",
   "farms",
   "loans",
@@ -31,18 +39,21 @@
    "fieldname": "farmer",
    "fieldtype": "Link",
    "label": "Farmer",
-   "options": "User"
+   "options": "User",
+   "reqd": 1
   },
   {
    "fetch_from": "farmer.full_name",
    "fieldname": "farmer_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Farmer Name"
   },
   {
    "fetch_from": "farmer.phone",
    "fieldname": "phone_number",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Phone Number"
   },
   {
@@ -58,6 +69,7 @@
   {
    "fieldname": "site",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Site ",
    "options": "Site"
   },
@@ -76,6 +88,7 @@
   {
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Status",
    "options": "Active\nInactive"
   },
@@ -132,14 +145,50 @@
   {
    "fieldname": "section_break_dz6e",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "bank_details_section",
+   "fieldtype": "Section Break",
+   "label": "Bank Details"
+  },
+  {
+   "fieldname": "id_type",
+   "fieldtype": "Select",
+   "label": "ID Type",
+   "options": "National Identity Number\nPermanent Voter's Card"
+  },
+  {
+   "fieldname": "id_number",
+   "fieldtype": "Int",
+   "label": "ID Number"
+  },
+  {
+   "fieldname": "column_break_tm3z",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "bank_name",
+   "fieldtype": "Data",
+   "label": "Bank Name"
+  },
+  {
+   "fieldname": "account_number",
+   "fieldtype": "Data",
+   "label": "Account Number"
+  },
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Details"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-12 12:46:52.346732",
+ "modified": "2025-03-13 16:31:20.138419",
  "modified_by": "Administrator",
  "module": "Farmer",
  "name": "Farmer Master",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

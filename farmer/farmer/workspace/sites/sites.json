@@ -22,7 +22,7 @@
  "is_hidden": 0,
  "label": "Sites",
  "links": [],
- "modified": "2025-03-12 17:27:27.194340",
+ "modified": "2025-03-13 10:50:41.645177",
  "modified_by": "Administrator",
  "module": "Farmer",
  "name": "Sites",
@@ -31,7 +31,11 @@
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
- "roles": [],
+ "roles": [
+  {
+   "role": "Farmer"
+  }
+ ],
  "sequence_id": 24.0,
  "shortcuts": [],
  "title": "Sites"
