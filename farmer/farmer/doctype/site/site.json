@@ -170,7 +170,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-12 16:56:41.001723",
+ "modified": "2025-03-13 18:03:04.057726",
  "modified_by": "Administrator",
  "module": "Farmer",
  "name": "Site",
@@ -190,7 +190,6 @@
    "write": 1
   }
  ],
- "quick_entry": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [
