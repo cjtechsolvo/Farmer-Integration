@@ -3,32 +3,48 @@ from frappe import _
 from frappe.utils.password import check_password
 
 @frappe.whitelist(allow_guest=True)
-def create_user(first_name, last_name, phone, email, new_password):
-    try:
-        if frappe.db.exists("User", {"email": email}):
-            return {"message": "Email Already Exists"}
+def create_user():
+    import json
+    data = json.loads(frappe.request.data)
 
-        user = frappe.get_doc({
-            "doctype": "User",
-            "email": email,
-            "first_name": first_name,
-            "last_name": last_name,
-            "phone": phone,  
-            "new_password": new_password,  
-            "enabled": 1,
-            "send_welcome_email": 0,
-        })
-        user.insert(ignore_permissions=True)
-        frappe.db.commit()
+    first_name = data.get("first_name")
+    last_name = data.get("last_name")
+    email = data.get("email")
+    phone = data.get("phone")
+    password = data.get("new_password")
 
-        return {"message": "User Created Successfully"}
+    if not (first_name and last_name and email and password):
+        return {"message": "Missing required fields"}
 
-    except Exception as e:
-        frappe.log_error(f"User Creation Failed: {e}", "Farmer App")
-        return {"message": str(e)}
+    # Check if user already exists
+    if frappe.db.exists("User", email):
+        return {"message": f"User {email} already exists"}
+
+    # Create User
+    user = frappe.get_doc({
+        "doctype": "User",
+        "first_name": first_name,
+        "last_name": last_name,
+        "email": email,
+        "mobile_no": phone,
+        "send_welcome_email": 1,
+        "enabled": 1,
+        "new_password": password
+    })
+    user.insert(ignore_permissions=True)
+
+    # **Assign "Farmer" role to the user**
+    user.append("roles", {"role": "Farmer"})
+    user.save(ignore_permissions=True)
+
+    frappe.db.commit()  # Ensure changes are committed
+
+    return {"message": "User Created Successfully"}
+    
 
 @frappe.whitelist(allow_guest=True)
 def login(email, password):
+
     try:
         # Check if the email exists and if the user is enabled
         user = frappe.db.get_value("User", {"email": email}, ["name", "enabled"], as_dict=True)
@@ -60,3 +76,44 @@ def login(email, password):
     except Exception as e:
         frappe.log_error(f"Login Failed: {e}", "Farmer App")
         return {"status": "fail", "message": str(e)}
+    
+@frappe.whitelist(allow_guest=True)
+def create_farm():
+    try:
+        # Get JSON data from request body
+        data = frappe.request.get_json()
+
+        if not data:
+            return {"status": "Failed", "message": "No JSON data provided."}
+
+        farm_name = data.get("farm_name")
+        longitude = data.get("longitude")
+        latitude = data.get("latitude")
+
+        if not (farm_name and longitude and latitude):
+            return {"status": "Failed", "message": "Missing required fields."}
+
+        # Create new Farm Master entry
+        farm = frappe.get_doc({
+            "doctype": "Farm Master",
+            "farm_name": farm_name,
+            "longitude": longitude,
+            "latitude": latitude
+        })
+        farm.insert()
+        frappe.db.commit()
+
+        return {
+            "status": "Success",
+            "message": f"Farm '{farm_name}' created successfully.",
+            "farm_name": farm_name,
+            "longitude": longitude,
+            "latitude": latitude,
+            "farm_id": farm.name
+        }
+    except Exception as e:
+        frappe.log_error(frappe.get_traceback(), "Farm Creation Error")
+        return {
+            "status": "Failed",
+            "message": f"Error occurred: {str(e)}"
+        }

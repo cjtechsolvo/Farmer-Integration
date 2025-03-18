@@ -184,7 +184,8 @@ define_csrf = 1
 #
 override_whitelisted_methods = {
      "farmer.api.user_api.create_user": "farmer.api.user_api.create_user",
-     "farmer.api.user_api.login": "farmer.api.user_api.login"
+     "farmer.api.user_api.login": "farmer.api.user_api.login",
+     "farmer.api.user_api.create_farm": "farmer.api.user_api.create_farm"
 }
 
 # each overriding function accepts a `data` argument;
