@@ -181,10 +181,14 @@ signup_form_template = "/www/registration/index.html"
 define_csrf = 1
 # Overriding Methods
 # ------------------------------
-#
+
 override_whitelisted_methods = {
      "farmer.api.user_api.create_user": "farmer.api.user_api.create_user",
-     "farmer.api.user_api.login": "farmer.api.user_api.login"
+     "farmer.api.user_api.login": "farmer.api.user_api.login",
+     "farmer.api.user_api.create_farm": "farmer.api.user_api.create_farm",
+     "farmer.api.user_api.get_all_crops": "farmer.api.user_api.get_all_crops",
+     "farmer.api.user_api.fetch_site_list": "farmer.api.user_api.fetch_site_list",
+
 }
 
 # each overriding function accepts a `data` argument;
