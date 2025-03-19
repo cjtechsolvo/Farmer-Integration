@@ -21,6 +21,12 @@
   "column_break_tm3z",
   "bank_name",
   "account_number",
+  "section_break_9bqz",
+  "crops_processed",
+  "equipments_used",
+  "section_break_naws",
+  "qty_processed_daily",
+  "unit",
   "section_break_dz6e",
   "farms",
   "loans",
@@ -180,11 +186,42 @@
    "fieldname": "details_section",
    "fieldtype": "Section Break",
    "label": "Details"
+  },
+  {
+   "fieldname": "section_break_9bqz",
+   "fieldtype": "Section Break",
+   "label": "Processing Details"
+  },
+  {
+   "fieldname": "crops_processed",
+   "fieldtype": "Link",
+   "label": "Crops Processed",
+   "options": "Crops Master"
+  },
+  {
+   "fieldname": "qty_processed_daily",
+   "fieldtype": "Data",
+   "label": "Qty Processed Daily"
+  },
+  {
+   "fieldname": "equipments_used",
+   "fieldtype": "Data",
+   "label": "Equipments Used"
+  },
+  {
+   "fieldname": "section_break_naws",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "unit",
+   "fieldtype": "Link",
+   "label": "Unit",
+   "options": "UOM"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-13 17:47:29.112853",
+ "modified": "2025-03-18 18:36:32.093725",
  "modified_by": "Administrator",
  "module": "Farmer",
  "name": "Farmer Master",

@@ -63,7 +63,8 @@ frappe.ui.form.on('Crops Master', {
                                 row.farm = result.farm;
                                 row.farm_name = result.farm_name;  
                                 row.site_name = result.site_name;  
-                                row.season = crop.planting_season;  
+                                row.start_month = crop.start_month;
+                                row.end_month = crop.end_month; 
                                 row.volume = crop.quantity; 
                                 row.unit = crop.unit;
                             });

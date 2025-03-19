@@ -7,6 +7,7 @@
 </head>
 
 <body>
+    <form id="register-form" enctype="multipart/form-data">
 
     <div class="register-container">
 
@@ -18,13 +19,12 @@
 
         <!-- Right Side - Dynamic Forms -->
         <div class="register-right">
-            <form id="register-form" enctype="multipart/form-data">
 
             <!-- Step 1: Personal Information -->
             <div class="form-step" id="step-personal">
-                <form id="register-form-step1" enctype="multipart/form-data" class="form-signin" role="form">
+
                     <h4>Personal Information</h4>
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                    <!-- <input type="hidden" name="csrf_token" value="{{ csrf_token }}"> -->
 
                     <div class="page-card-body">
 
@@ -134,24 +134,21 @@
                             <label class="form-label" for="profile_picture">Upload Profile Picture (optional)</label>
                             <input type="file" id="profile_picture" name="profile_picture" class="form-control">
                         </div>
-
                     </div>
 
-                </form>
             </div>
-
             <!-- Step 2: Security Setup -->
             <div class="form-step" id="step-security" style="display:none;">
                 <h4>Security Setup</h4>
 
                 <div class="form-group">
                     <label>Password *</label>
-                    <input type="password" name="password" id="password" class="form-control">
+                    <input type="password" name="password" id="new_password" class="form-control">
                 </div>
 
                 <div class="form-group">
                     <label>Confirm Password *</label>
-                    <input type="password" name="confirm_password" id="confirm_password" class="form-control">
+                    <input type="password" name="confirm_password" id="new_password" class="form-control">
                 </div>
 
                 <!-- Password Requirements -->
@@ -163,7 +160,6 @@
                         <li>Must contain one uppercase and lowercase letter</li>
                     </ul>
                 </div>
-
             </div>
 
             <!-- Step 3: Bank Details -->
@@ -296,7 +292,6 @@
                 </div>
 
             </div>
-        </form>
 
         </div> <!-- End Right Side -->
 
@@ -307,6 +302,14 @@
         <button type="button" class="btn btn-primary" id="next-btn">Next</button>
         <button type="submit" class="btn btn-success" id="submit-btn" style="display:none;">Submit</button>
     </div>
+    </form>
+
+    <script>
+        frappe.ready(() => {
+            console.log("CSRF Token:", frappe.csrf_token); 
+        });
+    </script>
+
     <script src="/assets/farmer/js/registration.js"></script>
 </body>
 
