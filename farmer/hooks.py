@@ -179,6 +179,20 @@ app_include_js = [
 signup_form_template = "/www/registration/index.html"
 
 define_csrf = 1
+
+permission_query_conditions = {
+    "Item": "farmer.api.user_api.item_permission_query_conditions",
+}
+
+
+doc_events = {
+    "Item": {
+        "after_insert": "farmer.api.user_api.create_or_update_website_item",
+        "on_update": "farmer.api.user_api.create_or_update_website_item"
+    }
+}
+
+
 # Overriding Methods
 # ------------------------------
 

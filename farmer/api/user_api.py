@@ -204,3 +204,38 @@ def fetch_site_list():
             "status": "error",
             "message": "Failed to fetch site list"
         }
+
+
+def item_permission_query_conditions(user):
+    if not user: user = frappe.session.user
+    if "System Manager" in frappe.get_roles(user):
+        return None
+    else:
+        return f"`tabItem`.owner = '{user}'"
+
+
+
+
+def create_or_update_website_item(doc, method):
+    if doc.show_on_website:
+        # Check if Website Item exists
+        website_item = frappe.db.exists("Website Item", {"item_code": doc.item_code})
+        
+        if website_item:
+            website_item_doc = frappe.get_doc("Website Item", website_item)
+            website_item_doc.website_item_name = doc.item_name
+            website_item_doc.save()
+        else:
+            frappe.get_doc({
+                "doctype": "Website Item",
+                "item_code": doc.item_code,
+                "website_item_name": doc.item_name
+            }).insert(ignore_permissions=True)
+
+        frappe.msgprint(f"Website Item created/updated for {doc.item_code}")
+    else:
+        # Optional: remove Website Item if unchecked
+        website_item = frappe.db.exists("Website Item", {"item_code": doc.item_code})
+        if website_item:
+            frappe.delete_doc("Website Item", website_item, ignore_permissions=True)
+            frappe.msgprint(f"Website Item removed for {doc.item_code}")
