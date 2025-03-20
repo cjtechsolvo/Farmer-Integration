@@ -205,6 +205,7 @@ def fetch_site_list():
             "message": "Failed to fetch site list"
         }
 
+#Check for the Farmer Specific Items
 
 def item_permission_query_conditions(user):
     if not user: user = frappe.session.user
@@ -215,6 +216,7 @@ def item_permission_query_conditions(user):
 
 
 
+#Create Website item during the Item Creation
 
 def create_or_update_website_item(doc, method):
     if doc.show_on_website:
