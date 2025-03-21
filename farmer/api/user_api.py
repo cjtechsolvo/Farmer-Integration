@@ -215,28 +215,75 @@ def item_permission_query_conditions(user):
         return f"`tabItem`.owner = '{user}'"
 
 
-
 #Create Website item during the Item Creation
+#commemt
 
 def create_or_update_website_item(doc, method):
     if doc.show_on_website:
+        
         # Check if Website Item exists
         website_item = frappe.db.exists("Website Item", {"item_code": doc.item_code})
         
         if website_item:
             website_item_doc = frappe.get_doc("Website Item", website_item)
-            website_item_doc.website_item_name = doc.item_name
-            website_item_doc.save()
         else:
-            frappe.get_doc({
-                "doctype": "Website Item",
-                "item_code": doc.item_code,
-                "website_item_name": doc.item_name
-            }).insert(ignore_permissions=True)
+            website_item_doc = frappe.new_doc("Website Item")
+            website_item_doc.item_code = doc.item_code
+        
+        # Dynamically fetch matching fields and update
+        item_fields = [field.fieldname for field in frappe.get_meta("Item").fields]
+        website_item_fields = [field.fieldname for field in frappe.get_meta("Website Item").fields]
+        
+        for field in website_item_fields:
+            if field in item_fields:
+                website_item_doc.set(field, doc.get(field))
+        
+        website_item_doc.save(ignore_permissions=True)
 
-        frappe.msgprint(f"Website Item created/updated for {doc.item_code}")
+        # --------------------------
+        # Copy Attachments (Image/File)
+        # --------------------------
+        # Fetch all attachments from Item
+        attachments = frappe.get_all("File", filters={
+            "attached_to_doctype": "Item",
+            "attached_to_name": doc.name
+        }, fields=["name", "file_url", "file_name"])
+        
+        # Remove existing attachments in Website Item (optional, to avoid duplicates)
+        existing_files = frappe.get_all("File", filters={
+            "attached_to_doctype": "Website Item",
+            "attached_to_name": website_item_doc.name
+        }, fields=["name"])
+        for file in existing_files:
+            frappe.delete_doc("File", file.name, ignore_permissions=True)
+        
+        # Attach same files to Website Item
+        first_file_url = ""
+        for idx, file in enumerate(attachments):
+            new_file = frappe.new_doc("File")
+            new_file.file_url = file.file_url
+            new_file.file_name = file.file_name
+            new_file.attached_to_doctype = "Website Item"
+            new_file.attached_to_name = website_item_doc.name
+            new_file.save(ignore_permissions=True)
+            
+            # Store the first file's URL to set as website image
+            if idx == 0:
+                first_file_url = file.file_url
+
+        
+        # Set Website Item's website_image field
+        if first_file_url:
+            website_item_doc.website_image = first_file_url
+            website_item_doc.save(ignore_permissions=True)
+
+        website_item_url = f"/app/website-item/{website_item_doc.name}"
+
+        frappe.msgprint(f"""<p>Website Item for <strong>{doc.item_code}</strong> has been created/updated with attachments.</p>
+           <p>To add more details or update the product, <a href="{website_item_url}" target="_blank">Click here to update Website Item</a>.</p>""", title="Website Item Updated", indicator="green")
+    
     else:
-        # Optional: remove Website Item if unchecked
+        # Remove Website Item if unchecked
         website_item = frappe.db.exists("Website Item", {"item_code": doc.item_code})
         if website_item:
             frappe.delete_doc("Website Item", website_item, ignore_permissions=True)
