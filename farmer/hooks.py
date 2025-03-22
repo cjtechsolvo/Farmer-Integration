@@ -5,6 +5,15 @@ app_description = "Farmer App"
 app_email = "chirag@gmail.com"
 app_license = "mit"
 
+
+signup_form_template = "/public/frontend/index.html"
+
+
+website_route_rules = [
+    {"from_route": "/#signup", "to_route": "/public/frontend/index"}
+]
+
+
 # Apps
 # ------------------
 
@@ -170,13 +179,13 @@ app_license = "mit"
 # -------
 
 # before_tests = "farmer.install.before_tests"
-app_include_js = "/assets/farmer/js/registration.js"
+# app_include_js = "/assets/farmer/js/registration.js"
 
 app_include_js = [
     "assets/appname/js/customer_quick_entry.js"
 ]
 
-signup_form_template = "/www/registration/index.html"
+# signup_form_template = "/www/registration/index.html"
 
 define_csrf = 1
 
@@ -269,3 +278,5 @@ override_whitelisted_methods = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+
+website_route_rules = [{'from_route': '/Signup/<path:app_path>', 'to_route': 'Signup'},]
