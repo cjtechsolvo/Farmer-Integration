@@ -38,10 +38,14 @@
   width: 100%;
 }
 
+.multiform {
+  max-width: 100% !important;
+}
+
 /* Signup Form Width */
 .full-width-login {
   max-width: 100% !important;
-  max-height: 92vh;
+  max-height: 98%;
 }
 
 .hide-page-card-head {

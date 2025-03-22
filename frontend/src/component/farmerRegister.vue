@@ -11,7 +11,7 @@
     </div>
     <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md">
       <h2 class="text-2xl font-semibold text-center mb-4">Create Account</h2>
-      <form @submit.prevent="handleSubmit">
+      <form class="multiform" @submit.prevent="handleSubmit">
         <div v-if="step === 1">
           <p class="text-center text-gray-600 mb-8">Personal Information</p>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
