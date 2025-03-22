@@ -1,0 +1,15 @@
+{
+  "name": "farmer",
+  "version": "1.0.0",
+  "description": "Farmer App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "cd Signup && yarn install",
+    "dev": "cd Signup && yarn dev",
+    "build": "cd Signup && yarn build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
