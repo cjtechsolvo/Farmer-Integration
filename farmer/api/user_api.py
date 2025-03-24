@@ -160,7 +160,7 @@ def create_farm():
         }
 
     except Exception as e:
-        frappe.log_error(frappe.get_traceback(), "Farm Creation Error")
+        frappe.log_error(frappe.get_traceback(), "Farm Creation Error.")
         return {
             "status": "Failed",
             "message": f"Error occurred: {str(e)}"
