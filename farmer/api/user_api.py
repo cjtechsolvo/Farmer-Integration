@@ -37,7 +37,6 @@ def create_farmer_for_user(user_email, phone, gender, location, id_type, id_numb
     except Exception as e:
         frappe.log_error(frappe.get_traceback(), "Farmer Master Creation Failed")
 
-
 # API 1: Create User with Farmer Master 
 
 @frappe.whitelist(allow_guest=True)
@@ -160,7 +159,7 @@ def create_farm():
         }
 
     except Exception as e:
-        frappe.log_error(frappe.get_traceback(), "Farm Creation Error.")
+        frappe.log_error(frappe.get_traceback(), "Farm Creation Error")
         return {
             "status": "Failed",
             "message": f"Error occurred: {str(e)}"
@@ -205,7 +204,7 @@ def fetch_site_list():
             "message": "Failed to fetch site list"
         }
 
-#Check for the Farmer Specific Items
+# API 5: Check for the Farmer Specific Items
 
 def item_permission_query_conditions(user):
     if not user: user = frappe.session.user
@@ -214,9 +213,7 @@ def item_permission_query_conditions(user):
     else:
         return f"`tabItem`.owner = '{user}'"
 
-
-#Create Website item during the Item Creation
-#commemt
+# API 6: Create Website item during the Item Creation
 
 def create_or_update_website_item(doc, method):
     if doc.show_on_website:
@@ -288,3 +285,40 @@ def create_or_update_website_item(doc, method):
         if website_item:
             frappe.delete_doc("Website Item", website_item, ignore_permissions=True)
             frappe.msgprint(f"Website Item removed for {doc.item_code}")
+
+# API 7: Sending the financing_available field data from Website item to Item and Sales order item.
+
+@frappe.whitelist()
+def get_financing_availability(sales_order):
+    """Fetch financing availability for each item in Sales Order"""
+    sales_order_doc = frappe.get_doc("Sales Order", sales_order)
+    items_data = []
+
+    for item in sales_order_doc.items:
+        financing_available = frappe.get_value(
+            "Website Item",
+            {"item_code": item.item_code},
+            "financing_available"
+        )
+        items_data.append({
+            "item_code": item.item_code,
+            "financing_available": financing_available or 0
+        })
+
+    return {"items": items_data}
+
+# API 8: Check for User specific Loan Application
+
+def loan_application_permission_query_conditions(user):
+    if not user:
+        user = frappe.session.user
+
+    # Admin users can see all loan applications
+    if "System Manager" in frappe.get_roles(user):
+        return None  
+      
+    # Regular users can only see their own Loan Applications
+    return f"`tabLoan Application`.owner = '{user}'"
+
+
+# API 9: Updating the Sales Order Payment Term before it creates on the Webshop

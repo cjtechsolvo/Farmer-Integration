@@ -191,6 +191,7 @@ define_csrf = 1
 
 permission_query_conditions = {
     "Item": "farmer.api.user_api.item_permission_query_conditions",
+    "Loan Application": "farmer.api.user_api.loan_application_permission_query_conditions"
 }
 
 
@@ -200,6 +201,10 @@ doc_events = {
         "on_update": "farmer.api.user_api.create_or_update_website_item"
     }
 }
+
+# website_context = {
+#     "get_context": "farmer.api.user_api.get_context"
+# }
 
 
 # Overriding Methods
@@ -211,7 +216,8 @@ override_whitelisted_methods = {
      "farmer.api.user_api.create_farm": "farmer.api.user_api.create_farm",
      "farmer.api.user_api.get_all_crops": "farmer.api.user_api.get_all_crops",
      "farmer.api.user_api.fetch_site_list": "farmer.api.user_api.fetch_site_list",
-
+     "farmer.api.user_api.get_financing_availability": "farmer.api.user_api.get_financing_availability",
+     "farmer.api.user_api.create_sales_order": "farmer.api.user_api.create_sales_order"
 }
 
 # each overriding function accepts a `data` argument;
