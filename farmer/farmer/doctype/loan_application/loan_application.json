@@ -15,6 +15,9 @@
   "interest_rate",
   "annual_income",
   "section_break_1vxg",
+  "down_payment_percentage",
+  "down_payment_amount",
+  "section_break_xysr",
   "loan_purpose",
   "section_break_uqt5",
   "status",
@@ -45,7 +48,7 @@
   },
   {
    "fieldname": "total_amount",
-   "fieldtype": "Currency",
+   "fieldtype": "Data",
    "label": "Total Amount\t"
   },
   {
@@ -97,8 +100,9 @@
   },
   {
    "fieldname": "sales_order",
-   "fieldtype": "Data",
-   "label": "Sales Order"
+   "fieldtype": "Link",
+   "label": "Sales Order",
+   "options": "Sales Order"
   },
   {
    "fieldname": "column_break_knly",
@@ -119,11 +123,25 @@
   {
    "fieldname": "section_break_o1gf",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_xysr",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "down_payment_percentage",
+   "fieldtype": "Float",
+   "label": "Down Payment(%)"
+  },
+  {
+   "fieldname": "down_payment_amount",
+   "fieldtype": "Percent",
+   "label": "Down Payment Amount"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-22 13:31:49.078606",
+ "modified": "2025-03-26 16:21:17.566980",
  "modified_by": "Administrator",
  "module": "Farmer",
  "name": "Loan Application",

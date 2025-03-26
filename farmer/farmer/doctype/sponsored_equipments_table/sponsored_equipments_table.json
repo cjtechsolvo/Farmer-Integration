@@ -1,0 +1,56 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-03-25 16:21:05.928116",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sponsored_equipments_section",
+  "equipment",
+  "quantity",
+  "discount",
+  "female_discount"
+ ],
+ "fields": [
+  {
+   "fieldname": "sponsored_equipments_section",
+   "fieldtype": "Section Break",
+   "label": "Sponsored Equipments"
+  },
+  {
+   "fieldname": "equipment",
+   "fieldtype": "Link",
+   "label": "Equipment",
+   "options": "Website Item"
+  },
+  {
+   "fieldname": "quantity",
+   "fieldtype": "Int",
+   "label": "Quantity"
+  },
+  {
+   "fieldname": "discount",
+   "fieldtype": "Percent",
+   "label": "Discount(%)"
+  },
+  {
+   "default": "0",
+   "fieldname": "female_discount",
+   "fieldtype": "Check",
+   "label": "Have a separate discount for females?"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-03-25 16:27:47.669846",
+ "modified_by": "Administrator",
+ "module": "Farmer",
+ "name": "Sponsored Equipments Table",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
