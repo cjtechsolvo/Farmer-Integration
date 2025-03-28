@@ -27,7 +27,8 @@
   {
    "fieldname": "no_of_farms",
    "fieldtype": "Int",
-   "label": "No of Farms"
+   "label": "No of Farms",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_ssbt",
@@ -58,12 +59,13 @@
   {
    "fieldname": "number_of_sites",
    "fieldtype": "Int",
-   "label": "No of Sites"
+   "label": "No of Sites",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-13 16:02:46.501676",
+ "modified": "2025-03-28 12:16:13.696724",
  "modified_by": "Administrator",
  "module": "Farmer",
  "name": "Crops Master",
