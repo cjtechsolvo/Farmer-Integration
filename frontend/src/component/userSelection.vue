@@ -3,7 +3,7 @@
     v-if="!showSignupForm"
     class="bg-green-50 flex items-center justify-center min-h-screen"
   >
-    <div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-3xl">
+    <div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-3xl mb-40">
       <h1 class="text-2xl font-semibold text-center mb-2">Create an account</h1>
       <p class="text-center text-gray-600 mb-6">
         How would you like to sign up?
