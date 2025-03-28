@@ -1,12 +1,12 @@
 import frappe
 from frappe import _
-from frappe.utils.password import check_password
 
 #Adding the Data into Farmer Master from Registration fields
 
 def create_farmer_for_user(user_email, phone, gender, location, id_type, id_number, bank_name, account_number, crops_processed, 
                            qty_processed_daily, equipments_used, unit, site):
     try:
+        print("FIRST STEP")
         # Check if Farmer Master already exists
         if frappe.db.exists("Farmer Master", {"farmer": user_email}):
             frappe.logger().info(f"Farmer already exists for user {user_email}")
@@ -34,7 +34,10 @@ def create_farmer_for_user(user_email, phone, gender, location, id_type, id_numb
         frappe.db.commit()
         frappe.logger().info(f"Farmer Master created for user {user_email}")
 
+        return farmer.name
+
     except Exception as e:
+        print("EROROR", e)
         frappe.log_error(frappe.get_traceback(), "Farmer Master Creation Failed")
 
 # API 1: Create User with Farmer Master 
@@ -44,25 +47,38 @@ def create_user():
     import json
     data = json.loads(frappe.request.data)
 
-    #USER Fields
+    # Required Fields
     first_name = data.get("first_name")
     last_name = data.get("last_name")
     email = data.get("email")
-    phone = data.get("phone")
-    gender = data.get("gender")
-    location = data.get("location")
     password = data.get("new_password")
 
-    #FARMER Fields
-    site = data.get("site")
-    id_type = data.get("id_type")
-    id_number = data.get("id_number")
-    bank_name = data.get("bank_name")
-    account_number = data.get("account_number")
-    crops_processed = data.get("crops_processed")
-    qty_processed_daily = data.get("qty_processed_daily")
-    equipments_used = data.get("equipments_used")
-    unit = data.get("unit")
+    # Ensure required fields are present
+    if not all([first_name, last_name, email, password]):
+        return {"message": "Missing required fields"}
+
+    # Optional Fields (Defaults to empty if not provided)
+    phone = data.get("phone", "")
+    gender = data.get("gender", "")
+    location = data.get("location", "")
+    
+    # FARMER Fields (Optional)
+    site = data.get("site", "")
+    id_type = data.get("id_type", "")
+    id_number = data.get("id_number", "")
+    bank_name = data.get("bank_name", "")
+    account_number = data.get("account_number", "")
+    crops_processed = data.get("crops_processed", "")
+    qty_processed_daily = data.get("qty_processed_daily", "")
+    equipments_used = data.get("equipments_used", "")
+    unit = data.get("unit", "")
+
+    # Farm Fields (Optional)
+    farm_name = data.get("farm_name", "")
+    longitude = data.get("longitude", "")
+    latitude = data.get("latitude", "")
+    crops = data.get("crops", [])  # Default to empty list
+    actual_crops = data.get("actual_crops", [])  # Default to empty list
 
     if not (first_name and last_name and email and password):
         return {"message": "Missing required fields"}
@@ -90,30 +106,26 @@ def create_user():
     user.append("roles", {"role": "Farmer"})
     user.save(ignore_permissions=True)
 
+    # user_image
+
     frappe.db.commit()  # Ensure changes are committed
 
-    create_farmer_for_user(email, phone, gender, location, id_type, id_number, bank_name, account_number, crops_processed, 
+    farmer_id = create_farmer_for_user(email, phone, gender, location, id_type, id_number, bank_name, account_number, crops_processed, 
                            qty_processed_daily, equipments_used, unit, site)
-
-    return {"message": "User Created Successfully"}
     
-# API 2: Create Farm Entry
+    farm_id = create_farm(farm_name,longitude,latitude,crops,actual_crops)
 
-@frappe.whitelist(allow_guest=True)
-def create_farm():
+    return {"message": "User Created Successfully", "data": {"user_id":user.name, "farmer_id": farmer_id, "farm_id": farm_id}}
+    
+
+# @frappe.whitelist(allow_guest=True)
+def create_farm(farm_name,longitude,latitude,crops,actual_crops):
     try:
         # Get JSON data from Postman request
         data = frappe.request.get_json()
 
         if not data:
             return {"status": "Failed", "message": "No JSON data provided."}
-
-        # Extract fields
-        farm_name = data.get("farm_name")
-        longitude = data.get("longitude")
-        latitude = data.get("latitude")
-        crops = data.get("crops")  # Expecting list of crop names (for MultiSelect)
-        actual_crops = data.get("actual_crops")  # Expecting list of dicts for child table
 
         # Validation
         if not (farm_name and longitude and latitude):
@@ -152,11 +164,7 @@ def create_farm():
         farm.insert(ignore_permissions=True)  # Allow Guest
         frappe.db.commit()
 
-        return {
-            "status": "Success",
-            "message": f"Farm '{farm_name}' created successfully.",
-            "farm_id": farm.name
-        }
+        return farm.name
 
     except Exception as e:
         frappe.log_error(frappe.get_traceback(), "Farm Creation Error")
@@ -164,8 +172,7 @@ def create_farm():
             "status": "Failed",
             "message": f"Error occurred: {str(e)}"
         }
-    
-
+     
 # API 3: Get All Crop Master Entries
 
 @frappe.whitelist(allow_guest=True)
@@ -322,3 +329,55 @@ def loan_application_permission_query_conditions(user):
 
 
 # API 9: 
+
+@frappe.whitelist(allow_guest=True)  # Requires user authentication
+def upload_profile_picture():
+    """Upload an image and set it as the user's profile picture using File doctype"""
+    
+    user_email = frappe.form_dict.get("user_email")  # Get the logged-in user
+    user_email = frappe.form_dict.get("farm_id")  # Add in attachment () Doctype - Farmer Master
+    user_email = frappe.form_dict.get("farmer_id")  # Add as attachment then add to field - documents - Doctype - Farm Master
+
+
+    uploaded_file = frappe.request.files.get("profile_image")
+    uploaded_id_doc = frappe.request.files.get("id_document")
+    uploaded_farm_doc = frappe.request.files.get("farm_document")
+
+
+
+    if not uploaded_file:
+        return {"error": "No image file uploaded."}
+
+    try:
+        # Read file data
+        file_data = uploaded_file.read()
+        filename = uploaded_file.filename
+        file_path = f"/files/{filename}"
+
+        # Save file in File doctype
+        file_doc = frappe.get_doc({
+            'doctype': 'File',
+            'file_name': filename,
+            'attached_to_doctype': 'User',  # Attach to User doctype
+            'attached_to_name': user_email,  # Attach to the logged-in user's document
+            'file_url': file_path,  # File storage path
+            'is_private': 0,  # Set to 1 if you want private file access
+            'content': file_data  # Convert to base64
+        })
+        file_doc.insert(ignore_permissions=True)
+
+        # Update the User profile with the uploaded image URL
+        user_doc = frappe.get_doc("User", user_email)
+        user_doc.user_image = file_doc.file_url
+        user_doc.save(ignore_permissions=True)
+
+        frappe.db.commit()
+
+        return {
+            "message": "Profile picture updated successfully",
+            "image_url": file_doc.file_url
+        }
+
+    except Exception as e:
+        frappe.log_error(frappe.get_traceback(), "Profile Picture Upload Failed")
+        return {"error": f"Failed to upload image: {str(e)}"}
