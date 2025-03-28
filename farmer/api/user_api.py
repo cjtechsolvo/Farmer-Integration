@@ -381,3 +381,21 @@ def upload_profile_picture():
     except Exception as e:
         frappe.log_error(frappe.get_traceback(), "Profile Picture Upload Failed")
         return {"error": f"Failed to upload image: {str(e)}"}
+
+# API 9: Check for User Specific Website Item View
+
+def user_specific_website_item(user):
+    if not user: user = frappe.session.user
+    if "System Manager" in frappe.get_roles(user):
+        return None
+    else:
+        return f"`tabWebsite Item`.owner = '{user}'"
+    
+# API 9: Check for User Specific Farmer Master View
+
+# def user_specific_farmer_master(user):
+#     if not user: user = frappe.session.user
+#     if "System Manager" in frappe.get_roles(user):
+#         return None
+#     else:
+#         return f"`tabFarmer Master`.owner = '{user}'"
