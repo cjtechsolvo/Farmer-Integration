@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"WH7ebJoNsz\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Sponsor</span>\",\"col\":12}},{\"id\":\"HbKKhNh7YO\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Equipment Count\",\"col\":3}},{\"id\":\"Bd0sWmG9Bq\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Unique Equipment Count\",\"col\":3}},{\"id\":\"WT-0cg_m2z\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Discount Value\",\"col\":3}},{\"id\":\"BX3W8oI_Yv\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"No of Loans Funded\",\"col\":3}},{\"id\":\"Q-qCi3viqW\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"NIdwpc9TAf\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"PUE Sponsor\",\"col\":3}}]",
+ "content": "[{\"id\":\"WH7ebJoNsz\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">PUE Sponsors Overview</span>\",\"col\":12}},{\"id\":\"HbKKhNh7YO\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Equipment Count\",\"col\":3}},{\"id\":\"Bd0sWmG9Bq\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Unique Equipment Count\",\"col\":3}},{\"id\":\"WT-0cg_m2z\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Discount Value\",\"col\":3}},{\"id\":\"BX3W8oI_Yv\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"No of Loans Funded\",\"col\":3}},{\"id\":\"Q-qCi3viqW\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"NIdwpc9TAf\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"PUE Sponsor\",\"col\":3}}]",
  "creation": "2025-03-25 17:05:08.580142",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,7 +13,7 @@
  "is_hidden": 0,
  "label": "Sponsor",
  "links": [],
- "modified": "2025-03-25 17:17:40.602633",
+ "modified": "2025-03-27 16:23:21.085581",
  "modified_by": "Administrator",
  "module": "Farmer",
  "name": "Sponsor",

@@ -321,4 +321,4 @@ def loan_application_permission_query_conditions(user):
     return f"`tabLoan Application`.owner = '{user}'"
 
 
-# API 9: Updating the Sales Order Payment Term before it creates on the Webshop
+# API 9: 

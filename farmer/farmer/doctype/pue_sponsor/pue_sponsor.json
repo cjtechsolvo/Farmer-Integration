@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "PUE-SPONSOR-.####",
  "creation": "2025-03-25 16:14:42.694201",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,8 +12,10 @@
   "column_break_c0qv",
   "sponsor_logo",
   "section_break_kpv9",
-  "equipment",
+  "equipments",
   "unique_equipment",
+  "column_break_ndb6",
+  "total_quantity",
   "total_value",
   "sponsored_equipments_section",
   "sponsored_equipments",
@@ -71,11 +74,6 @@
    "label": "Total Value"
   },
   {
-   "fieldname": "equipment",
-   "fieldtype": "Data",
-   "label": "Equipment"
-  },
-  {
    "fieldname": "tab_break_v3ku",
    "fieldtype": "Tab Break",
    "label": "Loans"
@@ -84,14 +82,31 @@
    "fieldname": "loan",
    "fieldtype": "Data",
    "label": "Loan"
+  },
+  {
+   "fieldname": "equipments",
+   "fieldtype": "Data",
+   "label": "Equipment",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_quantity",
+   "fieldtype": "Data",
+   "label": "Total Quantity",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_ndb6",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-25 17:02:46.741434",
+ "modified": "2025-03-27 18:35:52.948449",
  "modified_by": "Administrator",
  "module": "Farmer",
  "name": "PUE Sponsor",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
