@@ -1,7 +1,7 @@
 <template>
   <div>
     <pre>
-      {{ JSON.stringify(sites, null, 2) }}
+      {{ JSON.stringify(sites.data.data, null, 2) }}
     </pre>
   </div>
 </template>
