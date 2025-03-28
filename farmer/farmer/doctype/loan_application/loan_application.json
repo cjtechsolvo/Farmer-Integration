@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "LOAN-APP-.####",
  "creation": "2025-03-22 11:29:32.417050",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -141,10 +142,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-26 16:21:17.566980",
+ "modified": "2025-03-28 12:20:54.289669",
  "modified_by": "Administrator",
  "module": "Farmer",
  "name": "Loan Application",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
