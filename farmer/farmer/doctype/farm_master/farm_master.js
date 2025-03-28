@@ -1,5 +1,5 @@
 frappe.ui.form.on('Farm Master', {
-    onload: function(frm) {  
+    refresh: function(frm) {  
         update_number_of_crops(frm);
     },
     actual_crops_add: function(frm) {  
@@ -7,7 +7,7 @@ frappe.ui.form.on('Farm Master', {
     },
     actual_crops_remove: function(frm) {  
         update_number_of_crops(frm);
-    },
+    },              
     validate: function(frm) {  
         update_number_of_crops(frm);
     }

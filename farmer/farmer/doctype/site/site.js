@@ -872,6 +872,7 @@ frappe.ui.form.on("Site", {
         // Set the calculated value
         frm.set_value("pue_estimate_kw", estimate_kw);
     },
+    
     power_rating: function (frm) {
         if (frm.doc.power_rating && frm.doc.pue_estimate_percent) {
             let power = frm.doc.power_rating;
@@ -883,7 +884,6 @@ frappe.ui.form.on("Site", {
             frm.set_value("pue_estimate_kw", estimate_kw);
         }
     }
-
 });
 
 frappe.ui.form.on("Site Equipment Table", {
