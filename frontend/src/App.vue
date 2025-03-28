@@ -19,26 +19,10 @@ window.onload = function () {
   if (pageCardHead) {
     pageCardHead.classList.add('hide-page-card-head')
   }
+
+  var pageCardHead = document.querySelector('.container.my-4')
+  if (pageCardHead) {
+    pageCardHead.classList.add('custom-container')
+  }
 }
 </script>
-
-<!-- <template>
-  <div id="app">
-   <signup>
-   </signup>
-  </div>
- </template>
- <script>
-  import SignUp from './components/SignUp.vue';
- 
- export default {
-   name: 'App',
-   components: {
-     SignUp
-   }
- };
- </script>
- <style>
-  @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
- @import url('https://cdn.tailwindcss.com');
- </style> -->
