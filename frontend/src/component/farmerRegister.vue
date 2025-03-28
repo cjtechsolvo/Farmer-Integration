@@ -392,6 +392,9 @@
               type="file"
               @change="handleFileUpload"
             />
+            <p v-if="errors.idDocument" class="text-red-500 text-sm mt-1">
+              {{ errors.idDocument }}
+            </p>
           </div>
           <div class="mb-4">
             <label class="block text-gray-700" for="profile-picture"
@@ -1252,6 +1255,34 @@ export default {
         console.error(err)
       }
     },
+
+    async upload_file(formData) {
+      // Upload File
+
+      // const formData = new FormData()
+      // formData.append('file', file.file_obj, file.name)
+
+      try {
+        const response = await fetch('/api/method/upload_file', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+          },
+          body: formData,
+        })
+        const data = await response.json()
+        if (data && data.message) {
+          console.log('File uploaded successfully!', data.message)
+          return { msg: data.message, status: '200' }
+        } else {
+          console.error('Error in response:', data)
+          return { msg: data, status: '500' }
+        }
+      } catch (err) {
+        this.errors.crop = 'Failed to fetch Crops'
+        console.error(err)
+      }
+    },
     validateStep() {
       this.errors = {} // Reset errors before validation
 
@@ -1501,7 +1532,12 @@ export default {
           alert('File size must be less than 10MB!')
           return
         }
-        this.form.farmDocument = file
+        // this.form.farmDocument = file
+        console.log({ file })
+        let formData = new FormData()
+        formData.append('file', file, file.name)
+        const resp = this.upload_file(formData)
+        this.errors.idDocument = resp.msg
       }
     },
     handleFileDrop(event) {
