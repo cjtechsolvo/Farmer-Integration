@@ -175,9 +175,6 @@
               <p v-if="errors.site" class="text-red-500 text-sm mt-1">
                 {{ errors.site }}
               </p>
-              <p v-if="error" class="text-red-500 text-sm mt-1">
-                Failed to load sites: {{ error }}
-              </p>
             </div>
             <div class="mb-4">
               <label class="block text-gray-700">Are you a processor? *</label>
@@ -224,7 +221,9 @@
                 v-model="form.crop"
               >
                 <option value="">Select...</option>
-                <option value="Carrot">Carrot</option>
+                <option v-for="crop in this.cropList" :value="crop.name">
+                  {{ crop.name }}
+                </option>
               </select>
               <p v-if="errors.crop" class="text-red-500 text-sm mt-1">
                 {{ errors.crop }}
@@ -245,7 +244,12 @@
                 v-model="form.currentEquipment"
               >
                 <option value="">Select...</option>
-                <option value="Plow">Plow</option>
+                <option
+                  v-for="equipment in this.equipmentList"
+                  :value="equipment.name"
+                >
+                  {{ equipment.name }}
+                </option>
               </select>
               <p
                 v-if="errors.currentEquipment"
@@ -269,7 +273,12 @@
                 v-model="form.desiredEquipment"
               >
                 <option value="">Select...</option>
-                <option value="Machine">Machine</option>
+                <option
+                  v-for="equipment in this.equipmentList"
+                  :value="equipment.name"
+                >
+                  {{ equipment.name }}
+                </option>
               </select>
               <p
                 v-if="errors.desiredEquipment"
@@ -292,7 +301,8 @@
                   }"
                   v-model="form.quantityUnit"
                 >
-                  <option value="Unit">Unit</option>
+                  <option value="Kg">Kg</option>
+                  <option value="Bag">Bag</option>
                 </select>
                 <input
                   class="w-full border p-2 rounded-r"
@@ -340,7 +350,16 @@
                 v-model="form.idType"
               >
                 <option value="">Select...</option>
-                <option value="voter-id">Voter ID</option>
+                <option value="driver-license">Driver's License</option>
+                <option value="national-identity-number">
+                  National Identity Number
+                </option>
+                <option value="international-passport">
+                  International Passport
+                </option>
+                <option value="permanent-voter-card">
+                  Permanent Voter's Card
+                </option>
               </select>
             </div>
             <div class="mb-4">
@@ -691,7 +710,9 @@
                   v-model="crop.name"
                   @change="validateCrop(index)"
                 >
-                  <option value="">Select...</option>
+                  <option v-for="crop in this.cropList" :value="crop.name">
+                    {{ crop.name }}
+                  </option>
                 </select>
                 <p
                   v-if="errors[`crop_${index}_name`]"
@@ -884,6 +905,8 @@ export default {
       showConfirmPassword: false,
       errors: {},
       siteList: [],
+      cropList: [],
+      equipmentList: [],
     }
   },
   mounted() {
@@ -952,30 +975,31 @@ export default {
     },
 
     'form.site'(value) {
-      console.log('value - site', value)
       this.errors.site = value ? '' : 'Site is required'
     },
 
     'form.crop': function (value) {
-      console.log('crop', value)
       this.errors.crop = value ? '' : 'Crops is required'
     },
     'form.currentEquipment': function (value) {
-      console.log('currentEquipment', value)
-
       this.errors.currentEquipment = value
         ? ''
         : 'Current Equipment is required'
+      if (value === this.form.desiredEquipment) {
+        this.errors.currentEquipment =
+          "Current Equipment Can't be Same as Desired Equipment"
+      }
     },
     'form.desiredEquipment': function (value) {
-      console.log('desiredEquipment', value)
-
       this.errors.desiredEquipment = value
         ? ''
         : 'Desired Equipment is required'
+      if (this.form.currentEquipment === value) {
+        this.errors.desiredEquipment =
+          "Desired Equipment Can't be Same as Current Equipment"
+      }
     },
     'form.quantity': function (value) {
-      console.log('quantity', value)
       if (!value) {
         this.errors.quantity = 'Quantity is required'
       } else if (!/^\d+$/.test(value)) {
@@ -1127,10 +1151,8 @@ export default {
     'form.crops': {
       handler(value) {
         if (!Array.isArray(value)) {
-          console.log('failed', value)
           return
         }
-        console.log({ value })
         value.forEach((crop, index) => {
           // Crop Name Validation
           if (!crop.name) {
@@ -1181,25 +1203,54 @@ export default {
         if (data && data.message) {
           this.siteList = data.message.data.map((site) => site)
         } else {
-          this.error = 'Unexpected response format'
+          this.errors.site = 'Unexpected response format'
         }
       } catch (err) {
-        this.error = 'Failed to fetch sites'
+        this.errors.site = 'Failed to fetch sites'
         console.error(err)
       }
-      // try {
-      //   const { data } = await siteListResource.fetch()
-      //   console.log('hererer ', { data })
-      //   if (data && data.message) {
-      //     this.siteList = data.message.data
-      //     console.log('hererer ', { siteList })
-      //   } else {
-      //     this.errors = 'Unexpected response format'
-      //   }
-      // } catch (err) {
-      //   this.errors = 'Failed to fetch sites'
-      //   console.error(err)
-      // }
+
+      try {
+        const response = await fetch(
+          'http://127.0.0.1:8000/api/resource/Equipment Master?fields=["name"]&limit_page_length=1000',
+          {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+          }
+        )
+        const data = await response.json()
+        if (data && data.data) {
+          this.equipmentList = data.data.map((equipment) => equipment)
+          console.log('data', this.equipmentList)
+        } else {
+          this.errors.currentEquipment = 'Unexpected response format'
+          this.errors.desiredEquipment = 'Unexpected response format'
+        }
+      } catch (err) {
+        this.errors.currentEquipment = 'Failed to fetch Equipment'
+        this.errors.desiredEquipment = 'Failed to fetch Equipment'
+
+        console.error(err)
+      }
+
+      try {
+        const response = await fetch(
+          'http://127.0.0.1:8000/api/method/farmer.api.user_api.get_all_crops',
+          {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+          }
+        )
+        const data = await response.json()
+        if (data && data.message) {
+          this.cropList = data.message.crops.map((crop) => crop)
+        } else {
+          this.errors.crop = 'Unexpected response format'
+        }
+      } catch (err) {
+        this.errors.crop = 'Failed to fetch Crops'
+        console.error(err)
+      }
     },
     validateStep() {
       this.errors = {} // Reset errors before validation
@@ -1382,6 +1433,7 @@ export default {
       return Object.keys(this.errors).length === 0 // Return true if no errors
     },
     addAnotherCrop() {
+      console.log('this.crops', this.crops)
       this.form.crops.push({
         name: '',
         volume: '',
@@ -1394,7 +1446,7 @@ export default {
       this.form.crops.splice(index, 1)
     },
     nextStep() {
-      // if (this.step <= 3) this.step++
+      if (this.step <= 3) this.step++
       if (!this.validateStep()) {
         return // Stop execution if validation fails
       } else if (this.step < 4) {
