@@ -34,7 +34,8 @@
   "tasks",
   "task",
   "products",
-  "product",
+  "products_section",
+  "product_section",
   "orders",
   "order",
   "repayments",
@@ -122,11 +123,6 @@
    "fieldname": "products",
    "fieldtype": "Tab Break",
    "label": "Products"
-  },
-  {
-   "fieldname": "product",
-   "fieldtype": "Data",
-   "label": "Product"
   },
   {
    "fieldname": "orders",
@@ -217,6 +213,17 @@
    "fieldtype": "Link",
    "label": "Unit",
    "options": "UOM"
+  },
+  {
+   "fieldname": "products_section",
+   "fieldtype": "Section Break",
+   "label": "Products "
+  },
+  {
+   "fieldname": "product_section",
+   "fieldtype": "Table",
+   "label": "Product Section",
+   "options": "Farmer Product List"
   }
  ],
  "index_web_pages_for_search": 1,

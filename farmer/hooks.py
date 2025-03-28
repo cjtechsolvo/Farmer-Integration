@@ -191,9 +191,10 @@ define_csrf = 1
 
 permission_query_conditions = {
     "Item": "farmer.api.user_api.item_permission_query_conditions",
-    "Loan Application": "farmer.api.user_api.loan_application_permission_query_conditions"
+    "Loan Application": "farmer.api.user_api.loan_application_permission_query_conditions",
+    "Website Item": "farmer.api.user_api.user_specific_website_item",
+    # "Farmer Master": "farmer.api.user_api.user_specific_farmer_master"
 }
-
 
 doc_events = {
     "Item": {
