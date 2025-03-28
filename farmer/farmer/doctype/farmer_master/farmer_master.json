@@ -161,7 +161,7 @@
    "fieldname": "id_type",
    "fieldtype": "Select",
    "label": "ID Type",
-   "options": "National Identity Number\nPermanent Voter's Card"
+   "options": "National Identity Number\nPermanent Voter's Card\nDriver's License\nInternational Passport"
   },
   {
    "fieldname": "id_number",
@@ -221,7 +221,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-18 18:36:32.093725",
+ "modified": "2025-03-28 19:24:12.152249",
  "modified_by": "Administrator",
  "module": "Farmer",
  "name": "Farmer Master",

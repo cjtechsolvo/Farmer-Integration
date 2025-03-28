@@ -390,30 +390,34 @@
               class="w-full border border-gray-300 p-2 rounded mt-1"
               id="id-document"
               type="file"
-              @change="handleFileUpload"
+              @change="handleFileUpload($event, 'ID')"
             />
             <p v-if="errors.idDocument" class="text-red-500 text-sm mt-1">
               {{ errors.idDocument }}
             </p>
           </div>
           <div class="mb-4">
-            <label class="block text-gray-700" for="profile-picture"
-              >Upload profile picture (optional)</label
-            >
+            <label class="block text-gray-700" for="profile-picture">
+              Upload profile picture (optional)
+            </label>
             <div class="flex items-center mt-1">
               <img
+                id="profilePic"
                 alt="Profile picture"
                 class="w-10 h-10 rounded-full mr-4"
-                src="../assets/images/male-avatar-2.svg"
+                :src="this.profilePictureUrl"
               />
-              <button
-                class="bg-gray-200 text-gray-700 px-4 py-2 rounded"
-                @click="changeProfilePicture"
-              >
+              <input
+                type="file"
+                id="fileInput"
+                @change="changeProfilePicture"
+              />
+              <!-- <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded">
                 Change Picture
-              </button>
+              </button> -->
             </div>
           </div>
+
           <div class="flex justify-between">
             <!-- <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded">
               Back
@@ -711,7 +715,6 @@
                   class="w-full border border-gray-300 p-2 rounded mt-1"
                   :id="`crop-${index}`"
                   v-model="crop.name"
-                  @change="validateCrop(index)"
                 >
                   <option v-for="crop in this.cropList" :value="crop.name">
                     {{ crop.name }}
@@ -734,7 +737,8 @@
                     class="border border-gray-300 p-2 rounded-l"
                     v-model="crop.volumeUnit"
                   >
-                    <option value="Unit">Unit</option>
+                    <option value="Kg">Kg</option>
+                    <option value="Bag">Bag</option>
                   </select>
                   <input
                     class="w-full border border-gray-300 p-2 rounded-r"
@@ -742,7 +746,6 @@
                     placeholder="E.g. 56"
                     type="text"
                     v-model="crop.volume"
-                    @input="validateVolume(index)"
                   />
                 </div>
                 <p
@@ -764,9 +767,11 @@
                     class="w-full border border-gray-300 p-2 rounded mt-1"
                     :id="`start-month-${index}`"
                     v-model="crop.startMonth"
-                    @change="validateStartMonth(index)"
                   >
                     <option value="">Select...</option>
+                    <option v-for="month in this.monthList" :value="month">
+                      {{ month }}
+                    </option>
                   </select>
                   <p
                     v-if="errors[`crop_${index}_startMonth`]"
@@ -780,13 +785,21 @@
                   <label class="block text-gray-700" :for="`end-month-${index}`"
                     >End Month *</label
                   >
-                  <select
+                  <!-- <select
                     class="w-full border border-gray-300 p-2 rounded mt-1"
                     :id="`end-month-${index}`"
                     v-model="crop.endMonth"
                     @change="validateEndMonth(index)"
+                  > -->
+                  <select
+                    class="w-full border border-gray-300 p-2 rounded mt-1"
+                    :id="`end-month-${index}`"
+                    v-model="crop.endMonth"
                   >
                     <option value="">Select...</option>
+                    <option v-for="month in this.monthList" :value="month">
+                      {{ month }}
+                    </option>
                   </select>
                   <p
                     v-if="errors[`crop_${index}_endMonth`]"
@@ -897,19 +910,34 @@ export default {
           {
             name: '',
             volume: '',
-            volumeUnit: 'Unit',
+            volumeUnit: 'kg',
             startMonth: '',
             endMonth: '',
           },
         ],
       },
-      profilePictureUrl: 'https://via.placeholder.com/40', // Placeholder profile image
+      profilePictureUrl:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrsaTeFqurvUDvMYOcgZAd-JPf-dtLogrrog&s', // Placeholder profile image
       showPassword: false,
       showConfirmPassword: false,
       errors: {},
       siteList: [],
       cropList: [],
       equipmentList: [],
+      monthList: [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+      ],
     }
   },
   mounted() {
@@ -1256,32 +1284,97 @@ export default {
       }
     },
 
-    async upload_file(formData) {
-      // Upload File
-
-      // const formData = new FormData()
-      // formData.append('file', file.file_obj, file.name)
-
+    async registerUser() {
       try {
-        const response = await fetch('/api/method/upload_file', {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-          },
-          body: formData,
-        })
+        // Prepare the data object
+        const requestData = {
+          first_name: this.form.firstName,
+          last_name: this.form.lastName,
+          email: this.form.email,
+          phone: `${this.form.phoneCode}${this.form.phone}`, // Combining country code and phone
+          gender: this.form.gender,
+          location: this.form.address, // Mapping address field
+          new_password: this.form.password, // Using password field
+          id_type: this.form.idType,
+          id_number: this.form.idNumber,
+          bank_name: this.form.bankName,
+          account_number: this.form.bankAccountNumber,
+          crops_processed:
+            this.form.processor === 'Yes' ? this.form.crop || '' : '',
+          qty_processed_daily:
+            this.form.processor === 'Yes' ? this.form.quantity || '' : '',
+          equipments_used:
+            this.form.processor === 'Yes'
+              ? this.form.currentEquipment || ''
+              : '',
+          unit:
+            this.form.processor === 'Yes' ? this.form.quantityUnit || '' : '',
+          site: this.form.site,
+          farm_name: this.form.farmName,
+          longitude: this.form.longitude,
+          latitude: this.form.latitude,
+
+          crops: this.form.crops.map((crop) => crop.name), // Extracting crop names
+
+          actual_crops: this.form.crops.map((crop) => ({
+            crop_name: crop.name,
+            start_month: crop.startMonth,
+            end_month: crop.endMonth,
+            quantity: crop.volume,
+            unit: crop.volumeUnit,
+          })),
+        }
+
+        console.log({ requestData })
+        // API Call
+        const response = await fetch(
+          'http://127.0.0.1:8000/api/method/farmer.api.user_api.create_user',
+          {
+            method: 'POST', // Fixed "PPOST" typo
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(requestData), // Corrected to pass JSON
+          }
+        )
+
         const data = await response.json()
+
         if (data && data.message) {
-          console.log('File uploaded successfully!', data.message)
-          return { msg: data.message, status: '200' }
+          console.log('User Registration Success:', data.message)
         } else {
-          console.error('Error in response:', data)
-          return { msg: data, status: '500' }
+          console.error('Unexpected API response format:', data)
         }
       } catch (err) {
-        this.errors.crop = 'Failed to fetch Crops'
-        console.error(err)
+        console.error('Failed to register user:', err)
       }
+    },
+    async upload_file(formData) {
+      // Upload File
+      // const formData = new FormData()
+      // formData.append('file', file.file_obj, file.name)
+      // try {
+      //   const response = await fetch(
+      //     'http://127.0.0.1:8000/api/method/upload_file',
+      //     {
+      //       method: 'POST',
+      //       headers: {
+      //         Accept: 'application/json',
+      //         Authorization: 'token 42497944a120201:e2e9d869bc6afec',
+      //       },
+      //       body: formData,
+      //     }
+      //   )
+      //   const data = await response.json()
+      //   if (data && data.message) {
+      //     console.log('File uploaded successfully!', data.message)
+      //     return { msg: data.message, status: '200' }
+      //   } else {
+      //     console.error('Error in response:', data)
+      //     return { msg: data, status: '500' }
+      //   }
+      // } catch (err) {
+      //   this.errors.crop = 'Failed to fetch Crops'
+      //   console.error(err)
+      // }
     },
     validateStep() {
       this.errors = {} // Reset errors before validation
@@ -1464,7 +1557,7 @@ export default {
       return Object.keys(this.errors).length === 0 // Return true if no errors
     },
     addAnotherCrop() {
-      console.log('this.crops', this.crops)
+      console.log('this.crops', this.form.crops)
       this.form.crops.push({
         name: '',
         volume: '',
@@ -1477,7 +1570,8 @@ export default {
       this.form.crops.splice(index, 1)
     },
     nextStep() {
-      if (this.step <= 3) this.step++
+      // if (this.step <= 3) this.step++
+      console.log('checking error', this.errors)
       if (!this.validateStep()) {
         return // Stop execution if validation fails
       } else if (this.step < 4) {
@@ -1521,7 +1615,7 @@ export default {
     triggerFileInput() {
       this.$refs.fileInput.click() // Triggers hidden input when clicked
     },
-    handleFileUpload(event) {
+    handleFileUpload(event, flag) {
       const file = event.target.files[0]
       if (file) {
         if (file.type !== 'application/pdf') {
@@ -1532,12 +1626,17 @@ export default {
           alert('File size must be less than 10MB!')
           return
         }
-        // this.form.farmDocument = file
-        console.log({ file })
-        let formData = new FormData()
-        formData.append('file', file, file.name)
-        const resp = this.upload_file(formData)
-        this.errors.idDocument = resp.msg
+        if (flag == 'ID') {
+          this.form.idDocument = file
+          console.log('ID')
+        } else {
+          this.form.farmDocument = file
+          console.log('Document')
+        }
+
+        // let formData = new FormData()
+        // formData.append('file', file, file.name)
+        // this.upload_file(formData)
       }
     },
     handleFileDrop(event) {
@@ -1547,13 +1646,19 @@ export default {
         this.handleFileUpload({ target: { files: [file] } })
       }
     },
-    changeProfilePicture() {
-      this.profilePictureUrl = 'https://via.placeholder.com/100' // Change to uploaded image
+    changeProfilePicture(event) {
+      const file = event.target.files[0]
+      this.profilePicture = file
+      this.profilePictureUrl =
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrsaTeFqurvUDvMYOcgZAd-JPf-dtLogrrog&s' // Change to uploaded image
+
       // handleFileUpload()
     },
     handleSubmit() {
-      if (this.validateStep()) {
-        if (this.step < 4) {
+      if (!this.validateStep()) {
+        if (this.step == 4) {
+          const respo = this.registerUser()
+          console.log('respo', respo)
           alert('Form submitted successfully!')
         }
       } else {
@@ -1561,7 +1666,6 @@ export default {
       }
     },
   },
-
   name: 'farmerRegister',
 }
 </script>
