@@ -6,8 +6,8 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "farmer",
-  "farmer_name",
+  "applicant",
+  "applicant_name",
   "product_name",
   "total_amount",
   "column_break_knly",
@@ -30,18 +30,6 @@
   "remarks"
  ],
  "fields": [
-  {
-   "fieldname": "farmer",
-   "fieldtype": "Link",
-   "label": "Farmer",
-   "options": "Farmer Master"
-  },
-  {
-   "fetch_from": "farmer.farmer_name",
-   "fieldname": "farmer_name",
-   "fieldtype": "Data",
-   "label": "Farmer Name\t"
-  },
   {
    "fieldname": "product_name",
    "fieldtype": "Data",
@@ -138,11 +126,23 @@
    "fieldname": "down_payment_amount",
    "fieldtype": "Percent",
    "label": "Down Payment Amount"
+  },
+  {
+   "fieldname": "applicant",
+   "fieldtype": "Link",
+   "label": "Applicant",
+   "options": "User"
+  },
+  {
+   "fetch_from": "applicant.full_name",
+   "fieldname": "applicant_name",
+   "fieldtype": "Data",
+   "label": "Applicant Name\t"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-28 12:20:54.289669",
+ "modified": "2025-03-29 14:49:41.921749",
  "modified_by": "Administrator",
  "module": "Farmer",
  "name": "Loan Application",
