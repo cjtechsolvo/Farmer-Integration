@@ -113,13 +113,13 @@ def create_user():
     farmer_id = create_farmer_for_user(email, phone, gender, location, id_type, id_number, bank_name, account_number, crops_processed, 
                            qty_processed_daily, equipments_used, unit, site)
     
-    farm_id = create_farm(farm_name,longitude,latitude,crops,actual_crops)
+    farm_id = create_farm(farm_name,longitude,latitude,crops,actual_crops,farmer_id,site)
 
     return {"message": "User Created Successfully", "data": {"user_id":user.name, "farmer_id": farmer_id, "farm_id": farm_id}}
     
 
 # @frappe.whitelist(allow_guest=True)
-def create_farm(farm_name,longitude,latitude,crops,actual_crops):
+def create_farm(farm_name,longitude,latitude,crops,actual_crops,farmer_id,site):
     try:
         # Get JSON data from Postman request
         data = frappe.request.get_json()
@@ -156,6 +156,8 @@ def create_farm(farm_name,longitude,latitude,crops,actual_crops):
         farm = frappe.get_doc({
             "doctype": "Farm Master",
             "farm_name": farm_name,
+            "associated_farmer":farmer_id,
+            "site":site,
             "longitude": longitude,
             "latitude": latitude,
             "crop_name": crop_table,        # MultiSelect Table field
@@ -335,53 +337,122 @@ def upload_profile_picture():
     """Upload an image and set it as the user's profile picture using File doctype"""
     
     user_email = frappe.form_dict.get("user_email")  # Get the logged-in user
-    user_email = frappe.form_dict.get("farm_id")  # Add in attachment () Doctype - Farmer Master
-    user_email = frappe.form_dict.get("farmer_id")  # Add as attachment then add to field - documents - Doctype - Farm Master
+    farmer_name = frappe.form_dict.get("farmer_id")  # Add as attachment then add to field - documents - Doctype - Farm Master
+    farm_name = frappe.form_dict.get("farm_name")  # Add in attachment () Doctype - Farmer Master
 
 
     uploaded_file = frappe.request.files.get("profile_image")
-    uploaded_id_doc = frappe.request.files.get("id_document")
+    uploaded_farmer_id = frappe.request.files.get("id_document")
     uploaded_farm_doc = frappe.request.files.get("farm_document")
 
-
-
     if not uploaded_file:
-        return {"error": "No image file uploaded."}
+        profile_image_url =  {"error": "No image file uploaded."}
+    else:
+        try:
+            # Read file data
+            file_data = uploaded_file.read()
+            filename = uploaded_file.filename
+            file_path = f"/files/{filename}"
 
-    try:
-        # Read file data
-        file_data = uploaded_file.read()
-        filename = uploaded_file.filename
-        file_path = f"/files/{filename}"
+            # Save file in File doctype
+            file_doc = frappe.get_doc({
+                'doctype': 'File',
+                'file_name': filename,
+                'attached_to_doctype': 'User',  # Attach to User doctype
+                'attached_to_name': user_email,  # Attach to the logged-in user's document
+                'file_url': file_path,  # File storage path
+                'is_private': 0,  # Set to 1 if you want private file access
+                'content': file_data  # Convert to base64
+            })
+            file_doc.insert(ignore_permissions=True)
 
-        # Save file in File doctype
-        file_doc = frappe.get_doc({
-            'doctype': 'File',
-            'file_name': filename,
-            'attached_to_doctype': 'User',  # Attach to User doctype
-            'attached_to_name': user_email,  # Attach to the logged-in user's document
-            'file_url': file_path,  # File storage path
-            'is_private': 0,  # Set to 1 if you want private file access
-            'content': file_data  # Convert to base64
-        })
-        file_doc.insert(ignore_permissions=True)
+            # Update the User profile with the uploaded image URL
+            user_doc = frappe.get_doc("User", user_email)
+            user_doc.user_image = file_doc.file_url
+            user_doc.save(ignore_permissions=True)
 
-        # Update the User profile with the uploaded image URL
-        user_doc = frappe.get_doc("User", user_email)
-        user_doc.user_image = file_doc.file_url
-        user_doc.save(ignore_permissions=True)
+            frappe.db.commit()
 
-        frappe.db.commit()
+            profile_image_url =  file_doc.file_url
 
-        return {
+        except Exception as e:
+            frappe.log_error(frappe.get_traceback(), "Profile Picture Upload Failed")
+            return {"error": f"Failed to upload image: {str(e)}","status":500}
+    
+    if not uploaded_farmer_id:
+        farmer_id_url =  {"error": "No Id Document uploaded."}
+    else:
+        try:
+            # Read file data
+            file_data = uploaded_farmer_id.read()
+            filename = uploaded_farmer_id.filename
+            file_path = f"/files/{filename}"
+
+            # Save file in File doctype
+            file_doc = frappe.get_doc({
+                'doctype': 'File',
+                'file_name': filename,
+                'attached_to_doctype': 'Farmer Master',  # Attach to User doctype
+                'attached_to_name': farmer_name ,  # Attach to the logged-in user's document
+                'file_url': file_path,  # File storage path
+                'is_private': 0,  # Set to 1 if you want private file access
+                'content': file_data  # Convert to base64
+            })
+            file_doc.insert(ignore_permissions=True)
+
+            # Update the User profile with the uploaded image URL
+            # user_doc = frappe.get_doc("User", user_email)
+            # user_doc.user_image = file_doc.file_url
+            # user_doc.save(ignore_permissions=True)
+            farmer_id_url = file_doc.file_url
+
+            frappe.db.commit()
+
+        except Exception as e:
+            frappe.log_error(frappe.get_traceback(), "Profile Picture Upload Failed")
+            return {"error": f"Failed to upload image: {str(e)}","status":500}
+    
+    if not uploaded_farm_doc:
+        farm_document_url =  {"error": "No image file uploaded."}
+    else:
+        try:
+            # Read file data
+            file_data = uploaded_farm_doc.read()
+            filename = uploaded_farm_doc.filename
+            file_path = f"/files/{filename}"
+
+            # Save file in File doctype
+            file_doc = frappe.get_doc({
+                'doctype': 'File',
+                'file_name': filename,
+                'attached_to_doctype': 'Farm Master',  # Attach to User doctype
+                'attached_to_name': farm_name,  # Attach to the logged-in user's document
+                'file_url': file_path,  # File storage path
+                'is_private': 0,  # Set to 1 if you want private file access
+                'content': file_data  # Convert to base64
+            })
+            file_doc.insert(ignore_permissions=True)
+
+            # Update the User profile with the uploaded image URL
+            user_doc = frappe.get_doc("Farm Master", farm_name)
+            user_doc.documents = file_doc.file_url
+            user_doc.save(ignore_permissions=True)
+
+            frappe.db.commit()
+            farm_document_url = file_doc.file_url
+            
+        except Exception as e:
+            frappe.log_error(frappe.get_traceback(), "Profile Picture Upload Failed")
+            return {"error": f"Failed to upload image: {str(e)}", "status":500}
+
+    return {
             "message": "Profile picture updated successfully",
-            "image_url": file_doc.file_url
-        }
-
-    except Exception as e:
-        frappe.log_error(frappe.get_traceback(), "Profile Picture Upload Failed")
-        return {"error": f"Failed to upload image: {str(e)}"}
-
+            "data":
+                {"image_url": profile_image_url,
+                "farmer_id_url":farmer_id_url,
+                "farm_document": farm_document_url},
+            "status":200
+                }
 # API 9: Check for User Specific Website Item View
 
 def user_specific_website_item(user):

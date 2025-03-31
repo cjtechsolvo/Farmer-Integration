@@ -350,14 +350,14 @@
                 v-model="form.idType"
               >
                 <option value="">Select...</option>
-                <option value="driver-license">Driver's License</option>
-                <option value="national-identity-number">
+                <option value="Driver's License">Driver's License</option>
+                <option value="National Identity Number">
                   National Identity Number
                 </option>
-                <option value="international-passport">
+                <option value="International Passport">
                   International Passport
                 </option>
-                <option value="permanent-voter-card">
+                <option value="Permanent Voter's Card">
                   Permanent Voter's Card
                 </option>
               </select>
@@ -580,13 +580,20 @@
               <label class="block text-gray-700" for="bank-name"
                 >Bank Name *</label
               >
-              <select
+              <!-- <select
                 class="w-full border border-gray-300 p-2 rounded mt-1"
                 id="bank-name"
                 v-model="form.bankName"
               >
                 <option value="">Select...</option>
-              </select>
+              </select> -->
+              <input
+                class="w-full border border-gray-300 p-2 rounded mt-1"
+                id="bank-name"
+                placeholder="E.g. ABC Bank"
+                type="text"
+                v-model="form.bankName"
+              />
               <p v-if="errors.bankName" class="text-red-500 text-sm mt-1">
                 {{ errors.bankName }}
               </p>
@@ -674,6 +681,9 @@
                 type="text"
                 v-model="form.longitude"
               />
+              <p v-if="errors.longitude" class="text-red-500 text-sm mt-1">
+                {{ errors.longitude }}
+              </p>
             </div>
             <div class="mb-4">
               <label class="block text-gray-700" for="latitude">Latitude</label>
@@ -684,6 +694,9 @@
                 type="text"
                 v-model="form.latitude"
               />
+              <p v-if="errors.latitude" class="text-red-500 text-sm mt-1">
+                {{ errors.latitude }}
+              </p>
             </div>
           </div>
 
@@ -871,6 +884,7 @@
 </template>
 <script>
 const baseUrl = import.meta.env.VITE_BASE_URL
+// import { useToast } from 'vue-toastification'
 
 export default {
   data() {
@@ -895,6 +909,7 @@ export default {
         idType: '',
         idNumber: '',
         idDocument: null,
+        farmDocument: null,
         profilePicture: null,
         password: '',
         confirmPassword: '',
@@ -940,6 +955,11 @@ export default {
         'November',
         'December',
       ],
+      response: {
+        user_id: '',
+        farm_id: '',
+        farmer_id: '',
+      },
     }
   },
   mounted() {
@@ -954,6 +974,7 @@ export default {
         this.errors.firstName = 'First name cannot contain numbers'
       } else {
         this.errors.firstName = ''
+        delete this.errors.firstName
       }
     },
 
@@ -965,6 +986,7 @@ export default {
         this.errors.lastName = 'Last name cannot contain numbers'
       } else {
         this.errors.lastName = ''
+        delete this.errors.lastName
       }
     },
 
@@ -976,6 +998,7 @@ export default {
         this.errors.email = 'Enter a valid email address'
       } else {
         this.errors.email = ''
+        delete this.errors.email
       }
     },
 
@@ -987,6 +1010,7 @@ export default {
         this.errors.phone = 'Enter a valid phone number (numbers only)'
       } else {
         this.errors.phone = ''
+        delete this.errors.phone
       }
     },
     'form.age'(value) {
@@ -996,23 +1020,36 @@ export default {
         this.errors.age = 'Enter a valid age (positive numbers only)'
       } else {
         this.errors.age = ''
+        delete this.errors.age
       }
     },
 
     'form.gender'(value) {
       this.errors.gender = value ? '' : 'Gender is required'
+      if (value) {
+        delete this.errors.gender
+      }
     },
 
     'form.address'(value) {
       this.errors.address = value ? '' : 'Address is required'
+      if (value) {
+        delete this.errors.address
+      }
     },
 
     'form.site'(value) {
       this.errors.site = value ? '' : 'Site is required'
+      if (value) {
+        delete this.errors.site
+      }
     },
 
     'form.crop': function (value) {
       this.errors.crop = value ? '' : 'Crops is required'
+      if (value) {
+        delete this.errors.crop
+      }
     },
     'form.currentEquipment': function (value) {
       this.errors.currentEquipment = value
@@ -1021,6 +1058,8 @@ export default {
       if (value === this.form.desiredEquipment) {
         this.errors.currentEquipment =
           "Current Equipment Can't be Same as Desired Equipment"
+      } else if (value) {
+        delete this.errors.currentEquipment
       }
     },
     'form.desiredEquipment': function (value) {
@@ -1030,6 +1069,8 @@ export default {
       if (this.form.currentEquipment === value) {
         this.errors.desiredEquipment =
           "Desired Equipment Can't be Same as Current Equipment"
+      } else if (value) {
+        delete this.errors.desiredEquipment
       }
     },
     'form.quantity': function (value) {
@@ -1039,6 +1080,7 @@ export default {
         this.errors.quantity = 'Quantity must be a positive number'
       } else {
         this.errors.quantity = ''
+        delete this.errors.quantity
       }
     },
     // 'form.processor': {
@@ -1081,6 +1123,7 @@ export default {
         this.errors.idNumber = "Selected ID's Number is required"
       } else {
         this.errors.idNumber = ''
+        delete this.errors.idNumber
       }
     },
 
@@ -1089,6 +1132,7 @@ export default {
         this.errors.idNumber = "Selected ID's Number is required"
       } else {
         this.errors.idNumber = ''
+        delete this.errors.idNumber
       }
     },
 
@@ -1103,6 +1147,7 @@ export default {
           'Password must be at least 8 characters long, contain one uppercase, one lowercase, one number, and one special character'
       } else {
         this.errors.password = ''
+        delete this.errors.password
       }
     },
 
@@ -1113,6 +1158,7 @@ export default {
         this.errors.confirmPassword = 'Passwords do not match'
       } else {
         this.errors.confirmPassword = ''
+        delete this.errors.confirmPassword
       }
     },
     'form.smartphone'(value) {
@@ -1120,6 +1166,7 @@ export default {
         this.errors.smartphone = 'Please select if you have a smartphone'
       } else {
         this.errors.smartphone = ''
+        delete this.errors.smartphone
       }
     },
     'form.bankAccount'(value) {
@@ -1127,6 +1174,7 @@ export default {
         this.errors.bankAccount = 'Please select one of the above options'
       } else {
         this.errors.bankAccount = ''
+        delete this.errors.bankAccount
       }
 
       // if (value === 'Yes') {
@@ -1152,6 +1200,7 @@ export default {
             'Bank Account Number must contain only numbers'
         } else {
           this.errors.bankAccountNumber = ''
+          delete this.errors.bankAccountNumber
         }
       }
     },
@@ -1163,6 +1212,7 @@ export default {
         this.errors.farmName = 'Farm name can only contain letters and spaces'
       } else {
         this.errors.farmName = ''
+        delete this.errors.farmName
       }
     },
     'form.latitude'(value) {
@@ -1171,6 +1221,7 @@ export default {
         this.errors.latitude = 'Invalid latitude format'
       } else {
         this.errors.latitude = ''
+        delete this.errors.latitude
       }
     },
     'form.longitude'(value) {
@@ -1179,6 +1230,7 @@ export default {
         this.errors.longitude = 'Invalid longitude format'
       } else {
         this.errors.longitude = ''
+        delete this.errors.longitude
       }
     },
     'form.crops': {
@@ -1192,6 +1244,7 @@ export default {
             this.errors[`crop_${index}_name`] = 'Crop name is required'
           } else {
             this.errors[`crop_${index}_name`] = ''
+            delete this.errors[`crop_${index}_name`]
           }
 
           // Crop Volume Validation
@@ -1202,6 +1255,7 @@ export default {
               'Volume must be a positive number'
           } else {
             this.errors[`crop_${index}_volume`] = ''
+            delete this.errors[`crop_${index}_volume`]
           }
 
           // Start Month Validation
@@ -1209,6 +1263,7 @@ export default {
             this.errors[`crop_${index}_startMonth`] = 'Start month is required'
           } else {
             this.errors[`crop_${index}_startMonth`] = ''
+            delete this.errors[`crop_${index}_startMonth`]
           }
 
           // End Month Validation
@@ -1216,6 +1271,7 @@ export default {
             this.errors[`crop_${index}_endMonth`] = 'End month is required'
           } else {
             this.errors[`crop_${index}_endMonth`] = ''
+            delete this.errors[`crop_${index}_endMonth`]
           }
         })
       },
@@ -1342,41 +1398,48 @@ export default {
 
         if (data && data.message) {
           console.log('User Registration Success:', data.message)
+          return data.message
         } else {
           console.error('Unexpected API response format:', data)
+          return data
         }
       } catch (err) {
         console.error('Failed to register user:', err)
+        return err
       }
     },
-    async upload_file(formData) {
-      // Upload File
-      // const formData = new FormData()
-      // formData.append('file', file.file_obj, file.name)
-      // try {
-      //   const response = await fetch(
-      //     'http://127.0.0.1:8000/api/method/upload_file',
-      //     {
-      //       method: 'POST',
-      //       headers: {
-      //         Accept: 'application/json',
-      //         Authorization: 'token 42497944a120201:e2e9d869bc6afec',
-      //       },
-      //       body: formData,
-      //     }
-      //   )
-      //   const data = await response.json()
-      //   if (data && data.message) {
-      //     console.log('File uploaded successfully!', data.message)
-      //     return { msg: data.message, status: '200' }
-      //   } else {
-      //     console.error('Error in response:', data)
-      //     return { msg: data, status: '500' }
-      //   }
-      // } catch (err) {
-      //   this.errors.crop = 'Failed to fetch Crops'
-      //   console.error(err)
-      // }
+    async upload_file() {
+      try {
+        const formData = new FormData()
+
+        // Append necessary fields to formData
+        formData.append('user_email', this.response.user_id)
+        formData.append('farmer_id', this.response.farmer_id)
+        formData.append('farm_name', this.response.farm_id)
+        formData.append('profile_image', this.form.profilePicture)
+        formData.append('id_document', this.form.idDocument)
+        formData.append('farm_document', this.form.farmDocument)
+
+        const response = await fetch(
+          `${baseUrl}/api/method/farmer.api.user_api.upload_profile_picture`,
+          {
+            method: 'POST', // Use POST for file uploads
+            body: formData, // Send formData directly
+          }
+        )
+
+        const data = (await response.json()).message
+
+        if (data && data.status == 200) {
+          console.log('Upload successful:', data.message)
+          return true
+        } else {
+          console.error('Unexpected response format:', data)
+          return false
+        }
+      } catch (err) {
+        console.error('Upload failed:', err)
+      }
     },
     validateStep() {
       this.errors = {} // Reset errors before validation
@@ -1507,6 +1570,7 @@ export default {
           this.errors.farmName = 'Farm name can only contain letters and spaces'
         } else {
           this.errors.farmName = ''
+          delete this.errors.farmName
         }
 
         // Validate Latitude & Longitude (Optional but must be valid coordinates)
@@ -1517,12 +1581,14 @@ export default {
           this.errors.latitude = 'Invalid latitude format'
         } else {
           this.errors.latitude = ''
+          delete this.errors.latitude
         }
 
         if (this.form.longitude && !lngRegex.test(this.form.longitude)) {
           this.errors.longitude = 'Invalid longitude format'
         } else {
           this.errors.longitude = ''
+          delete this.errors.longitude
         }
 
         // Validate crop details
@@ -1531,6 +1597,7 @@ export default {
             this.errors[`crop_${index}_name`] = 'Crop name is required'
           } else {
             this.errors[`crop_${index}_name`] = ''
+            delete this.errors[`crop_${index}_name`]
           }
 
           if (!crop.volume) {
@@ -1540,18 +1607,21 @@ export default {
               'Volume must be a positive number'
           } else {
             this.errors[`crop_${index}_volume`] = ''
+            delete this.errors[`crop_${index}_volume`]
           }
 
           if (!crop.startMonth) {
             this.errors[`crop_${index}_startMonth`] = 'Start month is required'
           } else {
             this.errors[`crop_${index}_startMonth`] = ''
+            delete this.errors[`crop_${index}_startMonth`]
           }
 
           if (!crop.endMonth) {
             this.errors[`crop_${index}_endMonth`] = 'End month is required'
           } else {
             this.errors[`crop_${index}_endMonth`] = ''
+            delete this.errors[`crop_${index}_endMonth`]
           }
         })
       }
@@ -1650,21 +1720,41 @@ export default {
     },
     changeProfilePicture(event) {
       const file = event.target.files[0]
-      this.profilePicture = file
+      this.form.profilePicture = file
       this.profilePictureUrl =
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrsaTeFqurvUDvMYOcgZAd-JPf-dtLogrrog&s' // Change to uploaded image
 
       // handleFileUpload()
     },
-    handleSubmit() {
-      if (!this.validateStep()) {
-        if (this.step == 4) {
-          const respo = this.registerUser()
-          console.log('respo', respo)
-          alert('Form submitted successfully!')
+    async handleSubmit() {
+      if (this.validateStep()) {
+        if (this.step === 4) {
+          try {
+            const respo = await this.registerUser() // Call registerUser and get response
+            console.log({ respo })
+
+            if (respo && respo.message === 'User Created Successfully') {
+              this.response.user_id = respo.data.user_id
+              this.response.farm_id = respo.data.farm_id
+              this.response.farmer_id = respo.data.farmer_id
+
+              const is_uploaded = await this.upload_file()
+
+              if (is_uploaded) {
+                console.log('Redirecting to login...')
+                window.location.href = '/login' // Redirect to Frappe login page
+              } else {
+                console.error('Registration failed: Due to File Upload')
+              }
+            } else {
+              console.error('Registration failed:', respo.message)
+            }
+          } catch (error) {
+            console.error('Failed to register. Please try again!', error)
+          }
         }
       } else {
-        console.log('Form validation failed:', this.errors)
+        console.log('Form validation failed:', this.errors, this.validateStep())
       }
     },
   },
