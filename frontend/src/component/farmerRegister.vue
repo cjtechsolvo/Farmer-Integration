@@ -870,6 +870,8 @@
   </div>
 </template>
 <script>
+const baseUrl = import.meta.env.VITE_BASE_URL
+
 export default {
   data() {
     return {
@@ -1224,7 +1226,7 @@ export default {
     async fetchSites() {
       try {
         const response = await fetch(
-          'http://127.0.0.1:8000/api/method/farmer.api.user_api.fetch_site_list',
+          `${baseUrl}/api/method/farmer.api.user_api.fetch_site_list`,
           {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
@@ -1243,7 +1245,7 @@ export default {
 
       try {
         const response = await fetch(
-          'http://127.0.0.1:8000/api/resource/Equipment Master?fields=["name"]&limit_page_length=1000',
+          `${baseUrl}/api/resource/Equipment Master?fields=["name"]&limit_page_length=1000`,
           {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
@@ -1266,7 +1268,7 @@ export default {
 
       try {
         const response = await fetch(
-          'http://127.0.0.1:8000/api/method/farmer.api.user_api.get_all_crops',
+          `${baseUrl}/api/method/farmer.api.user_api.get_all_crops`,
           {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
@@ -1328,7 +1330,7 @@ export default {
         console.log({ requestData })
         // API Call
         const response = await fetch(
-          'http://127.0.0.1:8000/api/method/farmer.api.user_api.create_user',
+          `${baseUrl}/api/method/farmer.api.user_api.create_user`,
           {
             method: 'POST', // Fixed "PPOST" typo
             headers: { 'Content-Type': 'application/json' },
