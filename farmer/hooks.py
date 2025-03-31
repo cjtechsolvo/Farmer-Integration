@@ -10,7 +10,7 @@ signup_form_template = "/public/frontend/index.html"
 
 
 website_route_rules = [
-    {"from_route": "/#signup", "to_route": "/public/frontend/index"}
+    {"from_route": "/<path:subpath>#signup", "to_route": "frontend"}
 ]
 
 

@@ -7,8 +7,8 @@ import './index.css'
 
 import { Button, setConfig, frappeRequest, resourcesPlugin } from 'frappe-ui'
 
-import * as frappeUI from 'frappe-ui'
-console.log(frappeUI)
+// import * as frappeUI from 'frappe-ui'
+// // console.log(frappeUI)
 
 let app = createApp(App)
 

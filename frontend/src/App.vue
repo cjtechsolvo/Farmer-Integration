@@ -5,7 +5,7 @@
 </template>
 <style>
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
-@import url('https://cdn.tailwindcss.com');
+/* @import url('https://cdn.tailwindcss.com'); */
 </style>
 <script>
 window.onload = function () {
