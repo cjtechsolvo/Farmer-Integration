@@ -1,4 +1,5 @@
 frappe.ui.form.on('Loan Application', {
+
     down_payment_percentage: function(frm) {
         calculate_down_payment(frm);
     },
@@ -78,4 +79,30 @@ function make_down_payment(frm) {
             }
         }
     });
+}
+
+
+frappe.ui.form.on('Loan Application', {
+    loan_amount: function(frm) {
+        calculate_total_amount_with_interest(frm);
+    },
+    interest_rate: function(frm) {
+        calculate_total_amount_with_interest(frm);
+    },
+    repayment_period: function(frm) {
+        calculate_total_amount_with_interest(frm);
+    }
+});
+
+function calculate_total_amount_with_interest(frm) {
+    if (frm.doc.loan_amount && frm.doc.interest_rate && frm.doc.repayment_period) {
+        let P = frm.doc.loan_amount;
+        let r = frm.doc.interest_rate / 100;  // Convert percentage to decimal
+        let t = frm.doc.repayment_period;
+        let n = 12;  // Assuming monthly compounding
+
+        let A = P * Math.pow(1 + (r / n), n * t);  // Compound Interest Formula
+
+        frm.set_value('total_amount_after_interest', A.toFixed(2));  // Store with 2 decimal places
+    }
 }

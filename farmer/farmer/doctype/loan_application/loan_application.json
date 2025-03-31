@@ -18,6 +18,8 @@
   "section_break_1vxg",
   "down_payment_percentage",
   "down_payment_amount",
+  "column_break_teuj",
+  "total_amount_after_interest",
   "section_break_xysr",
   "loan_purpose",
   "section_break_uqt5",
@@ -138,11 +140,20 @@
    "fieldname": "applicant_name",
    "fieldtype": "Data",
    "label": "Applicant Name\t"
+  },
+  {
+   "fieldname": "total_amount_after_interest",
+   "fieldtype": "Data",
+   "label": "Total Amount After Interest"
+  },
+  {
+   "fieldname": "column_break_teuj",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-29 14:49:41.921749",
+ "modified": "2025-03-31 19:05:29.233493",
  "modified_by": "Administrator",
  "module": "Farmer",
  "name": "Loan Application",
