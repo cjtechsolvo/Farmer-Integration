@@ -33,6 +33,7 @@ frappe.ready(() => {
                 let userEmail = userData.message;
                 console.log("Logged-in User Email:", userEmail);
 
+
                 // Set the applicant field with the email
                 frappe.web_form.set_value("applicant", userEmail);
 
