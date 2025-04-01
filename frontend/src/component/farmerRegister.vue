@@ -1721,8 +1721,13 @@ export default {
     changeProfilePicture(event) {
       const file = event.target.files[0]
       this.form.profilePicture = file
-      this.profilePictureUrl =
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrsaTeFqurvUDvMYOcgZAd-JPf-dtLogrrog&s' // Change to uploaded image
+
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        this.profilePictureUrl = e.target.result
+      }
+      reader.readAsDataURL(file)
+      // this.profilePictureUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrsaTeFqurvUDvMYOcgZAd-JPf-dtLogrrog&s' // Change to uploaded image
 
       // handleFileUpload()
     },

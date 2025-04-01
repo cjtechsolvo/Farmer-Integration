@@ -10,8 +10,16 @@ signup_form_template = "/public/frontend/index.html"
 
 
 website_route_rules = [
-    {"from_route": "/<path:subpath>#signup", "to_route": "frontend"}
+    {"from_route": "/login<path:subpath>#signup", "to_route": "frontend"}
 ]
+
+
+app_include_js = "/assets/farmer/js/redirect.js"
+
+
+# website_path_resolver = "farmer.utils.custom_resolver"
+
+# on_logout = "farmer.utils.redirect_to_signup"
 
 
 # Apps

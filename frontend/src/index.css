@@ -12,6 +12,11 @@
 img {
   display: inline;
 }
+
+label {
+  margin-bottom: 0;
+}
+
 .register-container {
   display: flex;
   justify-content: center;

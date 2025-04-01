@@ -6,11 +6,6 @@ const routes = [
     name: 'Register',
     component: () => import('@/component/userSelection.vue'),
   },
-  {
-    path: '/testing',
-    name: 'Tester',
-    component: () => import('@/component/test.vue'),
-  },
 ]
 
 let router = createRouter({
