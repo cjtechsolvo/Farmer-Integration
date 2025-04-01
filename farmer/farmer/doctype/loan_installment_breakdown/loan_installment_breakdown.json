@@ -1,0 +1,73 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-04-01 15:42:15.676419",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "installment_number",
+  "due_date",
+  "installment_amount",
+  "principal_amount",
+  "interest_amount",
+  "paid_status",
+  "payment_date",
+  "payment_link"
+ ],
+ "fields": [
+  {
+   "fieldname": "installment_number",
+   "fieldtype": "Int",
+   "label": "Installment Number\t"
+  },
+  {
+   "fieldname": "due_date",
+   "fieldtype": "Date",
+   "label": "Due Date\t"
+  },
+  {
+   "fieldname": "installment_amount",
+   "fieldtype": "Currency",
+   "label": "Installment Amount\t"
+  },
+  {
+   "fieldname": "principal_amount",
+   "fieldtype": "Currency",
+   "label": "Principal Amount\t"
+  },
+  {
+   "fieldname": "interest_amount",
+   "fieldtype": "Currency",
+   "label": "Interest Amount\t"
+  },
+  {
+   "fieldname": "paid_status",
+   "fieldtype": "Select",
+   "label": "Paid Status\t",
+   "options": "Paid\nUnpaid"
+  },
+  {
+   "fieldname": "payment_date",
+   "fieldtype": "Date",
+   "label": "Payment Date\t"
+  },
+  {
+   "fieldname": "payment_link",
+   "fieldtype": "Data",
+   "label": "Payment Link"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-04-01 18:13:04.519797",
+ "modified_by": "Administrator",
+ "module": "Farmer",
+ "name": "Loan Installment Breakdown",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

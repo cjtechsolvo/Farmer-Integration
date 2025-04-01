@@ -200,6 +200,9 @@ doc_events = {
     "Item": {
         "after_insert": "farmer.api.user_api.create_or_update_website_item",
         "on_update": "farmer.api.user_api.create_or_update_website_item"
+    },
+    "Loan Application": {
+        "on_update": "farmer.api.user_api.create_loan_installments"
     }
 }
 

@@ -19,6 +19,7 @@
   "down_payment_percentage",
   "down_payment_amount",
   "column_break_teuj",
+  "compounding_frequency",
   "total_amount_after_interest",
   "section_break_xysr",
   "loan_purpose",
@@ -35,23 +36,27 @@
   {
    "fieldname": "product_name",
    "fieldtype": "Data",
-   "label": "Product Name"
+   "label": "Product Name",
+   "read_only": 1
   },
   {
    "fieldname": "total_amount",
    "fieldtype": "Data",
-   "label": "Total Amount\t"
+   "label": "Total Amount\t",
+   "read_only": 1
   },
   {
    "fieldname": "loan_amount",
    "fieldtype": "Currency",
-   "label": "Loan Amount\t"
+   "label": "Loan Amount\t",
+   "read_only": 1
   },
   {
    "fieldname": "repayment_period",
    "fieldtype": "Select",
    "label": "Repayment Period (Months)\t",
-   "options": "3\n6\n12\n24"
+   "options": "3\n6\n12\n24",
+   "read_only": 1
   },
   {
    "fieldname": "interest_rate",
@@ -66,7 +71,8 @@
   {
    "fieldname": "annual_income",
    "fieldtype": "Currency",
-   "label": "Annual Income\t"
+   "label": "Annual Income\t",
+   "read_only": 1
   },
   {
    "fieldname": "status",
@@ -82,6 +88,7 @@
   {
    "fieldname": "remarks",
    "fieldtype": "Small Text",
+   "in_list_view": 1,
    "label": "Remarks"
   },
   {
@@ -93,7 +100,8 @@
    "fieldname": "sales_order",
    "fieldtype": "Link",
    "label": "Sales Order",
-   "options": "Sales Order"
+   "options": "Sales Order",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_knly",
@@ -126,14 +134,16 @@
   },
   {
    "fieldname": "down_payment_amount",
-   "fieldtype": "Percent",
-   "label": "Down Payment Amount"
+   "fieldtype": "Currency",
+   "label": "Down Payment Amount",
+   "read_only": 1
   },
   {
    "fieldname": "applicant",
    "fieldtype": "Link",
    "label": "Applicant",
-   "options": "User"
+   "options": "User",
+   "read_only": 1
   },
   {
    "fetch_from": "applicant.full_name",
@@ -149,11 +159,17 @@
   {
    "fieldname": "column_break_teuj",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "compounding_frequency",
+   "fieldtype": "Select",
+   "label": "Compounding Frequency",
+   "options": "Monthly (12)\nQuarterly (4)\nYearly (1)\nDaily (365)"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-31 19:05:29.233493",
+ "modified": "2025-04-01 11:08:35.495042",
  "modified_by": "Administrator",
  "module": "Farmer",
  "name": "Loan Application",

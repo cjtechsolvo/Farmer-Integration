@@ -1,6 +1,10 @@
 import frappe
 from frappe import _
 
+from frappe.model.document import Document
+from datetime import datetime, timedelta
+import math
+
 #Adding the Data into Farmer Master from Registration fields
 
 def create_farmer_for_user(user_email, phone, gender, location, id_type, id_number, bank_name, account_number, crops_processed, 
@@ -470,3 +474,71 @@ def user_specific_website_item(user):
 #         return None
 #     else:
 #         return f"`tabFarmer Master`.owner = '{user}'"
+
+
+# API 10: Loan Installments Fetch 
+
+def create_loan_installments(doc, method):
+    """
+    Triggered when a Loan Application is approved.
+    Creates a Loan Installments record and generates installment breakdowns.
+    """
+    if doc.status == "Approved":
+        # Check if a Loan Installments record already exists
+        if frappe.db.exists("Loan Installments", {"applicant": doc.name}):
+            frappe.msgprint("Loan Installments already created for this application.", alert=True)
+            return
+
+        # Ensure numeric fields are converted properly
+        loan_amount = float(doc.loan_amount) if doc.loan_amount else 0.0
+        interest_rate = float(doc.interest_rate) if doc.interest_rate else 0.0
+        repayment_period = int(doc.repayment_period) if doc.repayment_period else 0
+        total_amount_after_interest = float(doc.total_amount_after_interest) if doc.total_amount_after_interest else 0.0
+
+        # Create a new Loan Installments record
+        loan_installment = frappe.new_doc("Loan Installments")
+        loan_installment.applicant = doc.name
+        loan_installment.loan_amount = loan_amount
+        loan_installment.repayment_period = repayment_period
+        loan_installment.interest_rate = interest_rate
+        loan_installment.compounding_frequency = doc.compounding_frequency
+        loan_installment.status = "Active"
+        
+        # Calculate total amount after interest
+        loan_installment.total_amount_after_interest = total_amount_after_interest  
+
+        # Generate Installments
+        generate_installment_breakdown(loan_installment, loan_amount, interest_rate, repayment_period)
+
+        # Save Loan Installments document
+        loan_installment.insert()
+        frappe.msgprint(f"Loan Installments created successfully for {doc.applicant}.", alert=True)
+
+def generate_installment_breakdown(loan_installment, loan_amount, interest_rate, repayment_period):
+    """
+    Generates installment breakdown based on EMI calculation and populates the child table.
+    """
+    if repayment_period == 0:
+        return
+
+    monthly_rate = interest_rate / 100 / 12
+    emi = (loan_amount * monthly_rate * math.pow(1 + monthly_rate, repayment_period)) / (math.pow(1 + monthly_rate, repayment_period) - 1)
+
+    for i in range(1, repayment_period + 1):
+        due_date = datetime.today() + timedelta(days=30 * i)
+        interest_amount = loan_amount * monthly_rate
+        principal_amount = emi - interest_amount
+
+        # Generate a payment link (Placeholder, replace with actual logic)
+        payment_link = f"https://payment-gateway.com/pay?installment={i}&amount={round(emi, 2)}"
+        
+        loan_installment.append("installments", {
+            "installment_number": i,
+            "due_date": due_date.strftime('%Y-%m-%d'),
+            "installment_amount": round(emi, 2),
+            "principal_amount": round(principal_amount, 2),
+            "interest_amount": round(interest_amount, 2),
+            "payment_link": payment_link, 
+            "paid_status": "Unpaid"
+        })
+

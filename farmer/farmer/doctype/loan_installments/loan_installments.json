@@ -1,0 +1,110 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "LOAN-INST-.####",
+ "creation": "2025-04-01 15:31:27.982925",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "applicant",
+  "loan_amount",
+  "repayment_period",
+  "interest_rate",
+  "column_break_qmhe",
+  "total_amount_after_interest",
+  "compounding_frequency",
+  "status",
+  "remarks",
+  "section_break_qjms",
+  "installments"
+ ],
+ "fields": [
+  {
+   "fieldname": "applicant",
+   "fieldtype": "Link",
+   "label": "Applicant",
+   "options": "Loan Application",
+   "read_only": 1
+  },
+  {
+   "fieldname": "loan_amount",
+   "fieldtype": "Currency",
+   "label": "Loan Amount\t",
+   "read_only": 1
+  },
+  {
+   "fieldname": "repayment_period",
+   "fieldtype": "Int",
+   "label": "Repayment Period (Months)\t",
+   "read_only": 1
+  },
+  {
+   "fieldname": "interest_rate",
+   "fieldtype": "Percent",
+   "label": "Interest Rate (%)\t",
+   "read_only": 1
+  },
+  {
+   "fieldname": "compounding_frequency",
+   "fieldtype": "Data",
+   "label": "Compounding Frequency\t",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_qmhe",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_amount_after_interest",
+   "fieldtype": "Data",
+   "label": "Total Amount After Interest\t",
+   "read_only": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "label": "Status"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "hidden": 1,
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "installments",
+   "fieldtype": "Table",
+   "label": "Installments",
+   "options": "Loan Installment Breakdown"
+  },
+  {
+   "fieldname": "section_break_qjms",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-04-01 18:36:04.925815",
+ "modified_by": "Administrator",
+ "module": "Farmer",
+ "name": "Loan Installments",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
