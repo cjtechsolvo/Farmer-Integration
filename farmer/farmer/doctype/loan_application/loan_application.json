@@ -1,0 +1,196 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "LOAN-APP-.####",
+ "creation": "2025-03-22 11:29:32.417050",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "applicant",
+  "applicant_name",
+  "product_name",
+  "total_amount",
+  "column_break_knly",
+  "loan_amount",
+  "repayment_period",
+  "interest_rate",
+  "annual_income",
+  "section_break_1vxg",
+  "down_payment_percentage",
+  "down_payment_amount",
+  "column_break_teuj",
+  "compounding_frequency",
+  "total_amount_after_interest",
+  "section_break_xysr",
+  "loan_purpose",
+  "section_break_uqt5",
+  "status",
+  "approved_loan_amount",
+  "column_break_onuc",
+  "documents",
+  "sales_order",
+  "section_break_o1gf",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "product_name",
+   "fieldtype": "Data",
+   "label": "Product Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Data",
+   "label": "Total Amount\t",
+   "read_only": 1
+  },
+  {
+   "fieldname": "loan_amount",
+   "fieldtype": "Currency",
+   "label": "Loan Amount\t",
+   "read_only": 1
+  },
+  {
+   "fieldname": "repayment_period",
+   "fieldtype": "Select",
+   "label": "Repayment Period (Months)\t",
+   "options": "3\n6\n12\n24",
+   "read_only": 1
+  },
+  {
+   "fieldname": "interest_rate",
+   "fieldtype": "Percent",
+   "label": "Interest Rate (%)\t"
+  },
+  {
+   "fieldname": "loan_purpose",
+   "fieldtype": "Small Text",
+   "label": "Loan Purpose"
+  },
+  {
+   "fieldname": "annual_income",
+   "fieldtype": "Currency",
+   "label": "Annual Income\t",
+   "read_only": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Pending\nApproved\nRejected"
+  },
+  {
+   "fieldname": "approved_loan_amount",
+   "fieldtype": "Currency",
+   "hidden": 1,
+   "label": "Approved Loan Amount"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "documents",
+   "fieldtype": "Attach",
+   "label": "Documents"
+  },
+  {
+   "fieldname": "sales_order",
+   "fieldtype": "Link",
+   "label": "Sales Order",
+   "options": "Sales Order",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_knly",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_1vxg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_onuc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_uqt5",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_o1gf",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_xysr",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "down_payment_percentage",
+   "fieldtype": "Float",
+   "label": "Down Payment(%)"
+  },
+  {
+   "fieldname": "down_payment_amount",
+   "fieldtype": "Currency",
+   "label": "Down Payment Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "applicant",
+   "fieldtype": "Link",
+   "label": "Applicant",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "applicant.full_name",
+   "fieldname": "applicant_name",
+   "fieldtype": "Data",
+   "label": "Applicant Name\t"
+  },
+  {
+   "fieldname": "total_amount_after_interest",
+   "fieldtype": "Data",
+   "label": "Total Amount After Interest"
+  },
+  {
+   "fieldname": "column_break_teuj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "compounding_frequency",
+   "fieldtype": "Select",
+   "label": "Compounding Frequency",
+   "options": "Monthly (12)\nQuarterly (4)\nYearly (1)\nDaily (365)"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-04-01 19:26:08.640539",
+ "modified_by": "Administrator",
+ "module": "Farmer",
+ "name": "Loan Application",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

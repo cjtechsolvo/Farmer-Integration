@@ -1,0 +1,23 @@
+{
+  "name": "frappe-ui-frontend",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --base=/assets/farmer/frontend/ && yarn copy-html-entry",
+    "copy-html-entry": "cp ../farmer/public/frontend/index.html ../farmer/www/signup.html"
+  },
+  "dependencies": {
+    "feather-icons": "^4.28.0",
+    "frappe-ui": "^0.0.105",
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.12"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.0.0",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17",
+    "vite": "^6.2.2"
+  }
+}

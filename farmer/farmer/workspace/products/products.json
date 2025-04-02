@@ -1,0 +1,55 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"xTJ4-jY2dz\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Products</span>\",\"col\":12}},{\"id\":\"tQJn8jJCJd\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"In-stock\",\"col\":4}},{\"id\":\"8WKGEcJaFx\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Out-of-stock\",\"col\":4}},{\"id\":\"e4J9Dq2E6G\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Rejected\",\"col\":4}},{\"id\":\"jIH1W5jkI-\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"6Qx6Ek6uYN\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Products\",\"col\":3}}]",
+ "creation": "2025-03-19 17:07:08.962382",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "assets",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Products",
+ "links": [],
+ "modified": "2025-03-19 18:57:46.340488",
+ "modified_by": "Administrator",
+ "module": "Farmer",
+ "name": "Products",
+ "number_cards": [
+  {
+   "label": "In-stock",
+   "number_card_name": "In-stock"
+  },
+  {
+   "label": "Out-of-stock",
+   "number_card_name": "Out-of-stock"
+  },
+  {
+   "label": "Rejected",
+   "number_card_name": "Rejected"
+  }
+ ],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "Farmer"
+  }
+ ],
+ "sequence_id": 23.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Products",
+   "link_to": "Item",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "Products"
+}

@@ -1,0 +1,130 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "FARM-.####",
+ "creation": "2025-03-12 11:49:59.928563",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "farm_name",
+  "site",
+  "site_name",
+  "associated_farmer",
+  "number_of_crops",
+  "column_break_ewsv",
+  "longitude",
+  "latitude",
+  "documents",
+  "crop_name",
+  "section_break_jrhy",
+  "actual_crops",
+  "tasks_tab",
+  "task"
+ ],
+ "fields": [
+  {
+   "fieldname": "farm_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Farm Name"
+  },
+  {
+   "fieldname": "site",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Site",
+   "options": "Site"
+  },
+  {
+   "fieldname": "associated_farmer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Associated Farmer",
+   "options": "Farmer Master"
+  },
+  {
+   "fieldname": "number_of_crops",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Number of Crops",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_ewsv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "longitude",
+   "fieldtype": "Float",
+   "label": "Longitude"
+  },
+  {
+   "fieldname": "latitude",
+   "fieldtype": "Float",
+   "label": "Latitude"
+  },
+  {
+   "fieldname": "documents",
+   "fieldtype": "Attach",
+   "label": "Documents "
+  },
+  {
+   "fieldname": "tasks_tab",
+   "fieldtype": "Tab Break",
+   "label": "Tasks"
+  },
+  {
+   "fieldname": "task",
+   "fieldtype": "Data",
+   "label": "Task"
+  },
+  {
+   "fieldname": "section_break_jrhy",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "actual_crops",
+   "fieldtype": "Table",
+   "label": "Actual Crops",
+   "options": "Actual Crop"
+  },
+  {
+   "fieldname": "crop_name",
+   "fieldtype": "Data",
+   "label": "Crop Name",
+   "options": "Possible Crop"
+  },
+  {
+   "fetch_from": "site.site_name",
+   "fieldname": "site_name",
+   "fieldtype": "Data",
+   "label": "Site Name",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-04-01 12:05:19.993475",
+ "modified_by": "Administrator",
+ "module": "Farmer",
+ "name": "Farm Master",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

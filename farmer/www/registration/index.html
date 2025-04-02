@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Register - Personal Information</title>
+    <link rel="stylesheet" href="/registration/index.css">
+</head>
+
+<body>
+    <form id="register-form" enctype="multipart/form-data">
+
+    <div class="register-container">
+
+        <!-- Left Side - Image Static -->
+        <div class="register-left">
+            <img src="/files/farm-2.jpg" alt="Registration">
+
+        </div>
+
+        <!-- Right Side - Dynamic Forms -->
+        <div class="register-right">
+
+            <!-- Step 1: Personal Information -->
+            <div class="form-step" id="step-personal">
+
+                    <h4>Personal Information</h4>
+                    <!-- <input type="hidden" name="csrf_token" value="{{ csrf_token }}"> -->
+
+                    <div class="page-card-body">
+
+                        <div class="form-row">
+                            <!-- First Name -->
+                            <div class="form-group" style="flex: 1; margin-right: 10px;">
+                                <label class="form-label" for="first_name">First Name *</label>
+                                <input type="text" id="first_name" name="first_name" class="form-control">
+                            </div>
+                            <!-- Last Name -->
+                            <div class="form-group" style="flex: 1; margin-left: 10px;">
+                                <label class="form-label" for="last_name">Last Name *</label>
+                                <input type="text" id="last_name" name="last_name" class="form-control">
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email (optional)</label>
+                            <input type="email" id="email" name="email" class="form-control">
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="form-group">
+                            <label class="form-label" for="phone">Phone *</label>
+                            <div style="display: flex;">
+                                <select id="country_code" name="country_code" class="form-control"
+                                    style="max-width: 120px; margin-right: 10px;">
+                                    <option value="+234">🇳🇬 +234</option>
+                                    <option value="+91">🇮🇳 +91</option>
+                                </select>
+                                <input type="tel" id="phone" name="phone" class="form-control">
+                            </div>
+                        </div>
+
+                        <!-- Age Group -->
+                        <div class="form-group">
+                            <label class="form-label" for="age_group">Age Group *</label>
+                            <select id="age_group" name="age_group" class="form-control">
+                                <option value="">Select Age Group</option>
+                                <option value="18-25">18 - 25</option>
+                                <option value="26-35">26 - 35</option>
+                                <option value="36-50">36 - 50</option>
+                                <option value="50+">50+</option>
+                            </select>
+                        </div>
+
+                        <!-- Gender -->
+                        <div class="form-group">
+                            <label class="form-label">Gender *</label><br />
+                            <input type="radio" id="male" name="gender" value="Male">
+                            <label for="male">Male</label>&nbsp;&nbsp;
+                            <input type="radio" id="female" name="gender" value="Female">
+                            <label for="female">Female</label>
+                        </div>
+
+                        <!-- Site -->
+                        <div class="form-group">
+                            <label class="form-label" for="site">Site *</label>
+                            <select id="site" name="site" class="form-control">
+                                <option value="">Select Site</option>
+                                <option value="Aggege">Aggege site</option>
+                                <option value="Ikorodu">Ikorodu site</option>
+                            </select>
+                        </div>
+
+                        <!-- Processor -->
+                        <div class="form-group">
+                            <label class="form-label">Are you a processor? *</label><br />
+                            <input type="radio" id="processor_yes" name="processor" value="Yes">
+                            <label for="processor_yes">Yes</label>&nbsp;&nbsp;
+                            <input type="radio" id="processor_no" name="processor" value="No">
+                            <label for="processor_no">No</label>
+                        </div>
+
+                        <!-- Residential Address -->
+                        <div class="form-group">
+                            <label class="form-label" for="residential_address">Residential Address *</label>
+                            <input type="text" id="residential_address" name="residential_address" class="form-control">
+                        </div>
+
+                        <!-- ID Type -->
+                        <div class="form-group">
+                            <label class="form-label" for="id_type">ID Type *</label>
+                            <select id="id_type" name="id_type" class="form-control">
+                                <option value="">Select ID Type</option>
+                                <option value="Driver's License">Driver's License</option>
+                                <option value="National ID">National ID</option>
+                                <option value="Voter's Card">Voter's Card</option>
+                            </select>
+                        </div>
+
+                        <!-- ID Number -->
+                        <div class="form-group">
+                            <label class="form-label" for="id_number">ID Number *</label>
+                            <input type="text" id="id_number" name="id_number" class="form-control">
+                        </div>
+
+                        <!-- Upload ID Document -->
+                        <div class="form-group">
+                            <label class="form-label" for="id_document">Upload ID Document *</label>
+                            <input type="file" id="id_document" name="id_document" class="form-control">
+                        </div>
+
+                        <!-- Profile Picture -->
+                        <div class="form-group">
+                            <label class="form-label" for="profile_picture">Upload Profile Picture (optional)</label>
+                            <input type="file" id="profile_picture" name="profile_picture" class="form-control">
+                        </div>
+                    </div>
+
+            </div>
+            <!-- Step 2: Security Setup -->
+            <div class="form-step" id="step-security" style="display:none;">
+                <h4>Security Setup</h4>
+
+                <div class="form-group">
+                    <label>Password *</label>
+                    <input type="password" name="password" id="new_password" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label>Confirm Password *</label>
+                    <input type="password" name="confirm_password" id="new_password" class="form-control">
+                </div>
+
+                <!-- Password Requirements -->
+                <div class="password-requirements" style="margin-top: 10px; font-size: 0.9rem; color: #555;">
+                    <strong>Password Requirements:</strong>
+                    <ul style="margin-top: 5px; padding-left: 18px;">
+                        <li>Must be at least 8 characters</li>
+                        <li>Must contain one special character and one number</li>
+                        <li>Must contain one uppercase and lowercase letter</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Step 3: Bank Details -->
+            <div class="form-step" id="step-bank" style="display:none;">
+                <h4>Bank Details</h4>
+
+                <!-- Smartphone Question -->
+                <div class="form-group">
+                    <label>Do you have a smartphone? *</label><br />
+                    <input type="radio" id="smartphone_yes" name="smartphone" value="Yes">
+                    <label for="smartphone_yes">Yes</label>&nbsp;&nbsp;
+                    <input type="radio" id="smartphone_no" name="smartphone" value="No">
+                    <label for="smartphone_no">No</label>
+                </div>
+
+                <!-- Bank Account Question -->
+                <div class="form-group">
+                    <label>Do you have a bank account? *</label><br />
+                    <input type="radio" id="bank_account_yes" name="bank_account" value="Yes">
+                    <label for="bank_account_yes">Yes</label>&nbsp;&nbsp;
+                    <input type="radio" id="bank_account_no" name="bank_account" value="No">
+                    <label for="bank_account_no">No</label>
+                </div>
+
+                <!-- Conditional Bank Fields -->
+                <div id="bank-details-fields" style="display: none; margin-top: 10px;">
+                    <div class="form-group">
+                        <label>Bank Name *</label>
+                        <input type="text" name="bank_name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Account Number *</label>
+                        <input type="text" name="account_number" class="form-control">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Step 4: Farm Registration -->
+            <div class="form-step" id="step-farm" style="display:none;">
+                <h4>Farm Registration</h4>
+
+                <!-- Farm Name -->
+                <div class="form-group">
+                    <label>Farm Name *</label>
+                    <input type="text" name="farm_name" class="form-control" placeholder="E.g. Armenia Farms Inc">
+                </div>
+
+                <!-- Address -->
+                <div class="form-group">
+                    <label>Address *</label>
+                    <input type="text" name="farm_location" class="form-control"
+                        placeholder="E.g. 12 landon community, Kogi">
+                </div>
+
+                <!-- Longitude & Latitude -->
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Longitude</label>
+                        <input type="text" name="longitude" class="form-control" placeholder="E.g. 8.8765">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Latitude</label>
+                        <input type="text" name="latitude" class="form-control" placeholder="E.g. 8.8765">
+                    </div>
+                </div>
+
+                <!-- Crops cultivated and planting season -->
+                <h5>Crops cultivated and planting season</h5>
+                <div class="form-group">
+                    <label>What crop do you want to cultivate on this farm? *</label>
+                    <select name="crop_type" class="form-control">
+                        <option value="">Select...</option>
+                        <option value="Maize">Maize</option>
+                        <option value="Rice">Rice</option>
+                        <option value="Wheat">Wheat</option>
+                        <!-- Add more crops as needed -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>What volume of this crop will you cultivate? *</label>
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <input type="text" name="crop_volume" class="form-control" placeholder="E.g. 56">
+                        </div>
+                        <div class="col-md-6">
+                            <select name="crop_unit" class="form-control">
+                                <option value="">Unit</option>
+                                <option value="Kg">Kg</option>
+                                <option value="Tons">Tons</option>
+                                <!-- Add more units if needed -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Start Month *</label>
+                        <select name="start_month" class="form-control">
+                            <option value="">Select...</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <!-- Add remaining months -->
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>End Month *</label>
+                        <select name="end_month" class="form-control">
+                            <option value="">Select...</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <!-- Add remaining months -->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" class="btn btn-secondary">+ Add another crop</button>
+                </div>
+
+                <!-- Upload farm documents -->
+                <div class="form-group">
+                    <label>Upload farm documents</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="farm_documents" accept="application/pdf">
+                        <label class="custom-file-label">Click to upload(PDF file only, max. 10MB)</label>
+                    </div>
+                </div>
+
+            </div>
+
+        </div> <!-- End Right Side -->
+
+    </div> <!-- End register-container -->
+    <!-- Step Navigation Buttons -->
+    <div class="registration-buttons">
+        <button type="button" class="btn btn-secondary" id="prev-btn" style="display:none;">Previous</button>
+        <button type="button" class="btn btn-primary" id="next-btn">Next</button>
+        <button type="submit" class="btn btn-success" id="submit-btn" style="display:none;">Submit</button>
+    </div>
+    </form>
+
+    <script>
+        frappe.ready(() => {
+            console.log("CSRF Token:", frappe.csrf_token); 
+        });
+    </script>
+
+    <script src="/assets/farmer/js/registration.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,209 @@
+{
+ "actions": [],
+ "autoname": "SITE-.####",
+ "creation": "2025-03-10 15:41:26.146790",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "details_section",
+  "section_break_xlmg",
+  "site_name",
+  "status",
+  "power_rating",
+  "pue_estimate_percent",
+  "section_break_0sbp",
+  "state",
+  "local_government_area",
+  "developer",
+  "pue_estimate_kw",
+  "section_break_vfe8",
+  "equipment_name",
+  "farmers_section",
+  "assigned_farmer",
+  "delivery_agents_tab",
+  "delivery_agent",
+  "technicians_tab",
+  "technician",
+  "crops_section",
+  "possible_crops",
+  "actual_crops",
+  "tasks_tab",
+  "task"
+ ],
+ "fields": [
+  {
+   "fieldname": "site_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Site Name",
+   "options": "Abia\nAdamawa\nAkwaIbom\nAnambra\nBauchi\nBayelsa\nBenue\nBorno\nCross River\nDelta\nEbonyi\nEdo\nEkiti\nRivers\nEnugu\nFCT\nGombe\nImo\nJigawa\nKaduna\nKano",
+   "reqd": 1
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "State",
+   "options": "Abia\nAdamawa\nAkwaIbom\nAnambra\nBauchi\nBayelsa\nBenue\nBorno\nCross River\nDelta\nEbonyi\nEdo\nEkiti\nRivers\nEnugu\nFCT\nGombe\nImo\nJigawa\nKaduna\nKano",
+   "reqd": 1
+  },
+  {
+   "fieldname": "power_rating",
+   "fieldtype": "Percent",
+   "label": "Power Rating (KW)"
+  },
+  {
+   "fieldname": "developer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Developer",
+   "options": "Site Developer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Prospective\nUnder Construction\nCommissioned"
+  },
+  {
+   "fieldname": "section_break_0sbp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "local_government_area",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Local Government Area (LGA)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_vfe8",
+   "fieldtype": "Section Break",
+   "label": "Site Capacity - Equipment"
+  },
+  {
+   "fieldname": "pue_estimate_percent",
+   "fieldtype": "Percent",
+   "label": "PUE Estimate (%):"
+  },
+  {
+   "fieldname": "pue_estimate_kw",
+   "fieldtype": "Int",
+   "label": "PUE Estimate (kw):",
+   "read_only": 1
+  },
+  {
+   "fieldname": "equipment_name",
+   "fieldtype": "Table",
+   "label": "Equipment Name",
+   "options": "Site Equipment Table"
+  },
+  {
+   "fieldname": "assigned_farmer",
+   "fieldtype": "Table",
+   "label": "Assigned Farmer",
+   "options": "Farmer Table"
+  },
+  {
+   "fieldname": "possible_crops",
+   "fieldtype": "Table MultiSelect",
+   "label": "Possible Crops",
+   "options": "Possible Crop"
+  },
+  {
+   "fieldname": "actual_crops",
+   "fieldtype": "Table",
+   "label": "Actual Crops",
+   "options": "Actual Crop"
+  },
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Tab Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "farmers_section",
+   "fieldtype": "Tab Break",
+   "label": "Farmers"
+  },
+  {
+   "fieldname": "crops_section",
+   "fieldtype": "Tab Break",
+   "label": "Crops"
+  },
+  {
+   "fieldname": "delivery_agents_tab",
+   "fieldtype": "Tab Break",
+   "label": "Delivery Agents"
+  },
+  {
+   "fieldname": "delivery_agent",
+   "fieldtype": "Data",
+   "label": "Delivery Agent"
+  },
+  {
+   "fieldname": "technicians_tab",
+   "fieldtype": "Tab Break",
+   "label": "Technicians"
+  },
+  {
+   "fieldname": "technician",
+   "fieldtype": "Data",
+   "label": "Technician"
+  },
+  {
+   "fieldname": "tasks_tab",
+   "fieldtype": "Tab Break",
+   "label": "Tasks"
+  },
+  {
+   "fieldname": "task",
+   "fieldtype": "Data",
+   "label": "Task"
+  },
+  {
+   "fieldname": "section_break_xlmg",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-03-13 18:03:04.057726",
+ "modified_by": "Administrator",
+ "module": "Farmer",
+ "name": "Site",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [
+  {
+   "color": "Green",
+   "title": "Commissioned"
+  },
+  {
+   "color": "Gray",
+   "title": "Prospective"
+  },
+  {
+   "color": "Yellow",
+   "title": "Under Construction"
+  }
+ ]
+}

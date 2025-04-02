@@ -1,0 +1,130 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "PUE-SPONSOR-.####",
+ "creation": "2025-03-25 16:14:42.694201",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "sponsor_info_section",
+  "sponsor_name",
+  "upload_picture",
+  "column_break_c0qv",
+  "sponsor_logo",
+  "section_break_kpv9",
+  "equipments",
+  "unique_equipment",
+  "column_break_ndb6",
+  "total_quantity",
+  "total_value",
+  "sponsored_equipments_section",
+  "sponsored_equipments",
+  "tab_break_v3ku",
+  "loan"
+ ],
+ "fields": [
+  {
+   "fieldname": "sponsor_info_section",
+   "fieldtype": "Section Break",
+   "label": "Sponsor Info"
+  },
+  {
+   "fieldname": "sponsor_name",
+   "fieldtype": "Data",
+   "label": "Sponsor's Name"
+  },
+  {
+   "fieldname": "sponsor_logo",
+   "fieldtype": "Image",
+   "label": "Sponsor Logo",
+   "options": "upload_picture"
+  },
+  {
+   "fieldname": "upload_picture",
+   "fieldtype": "Attach",
+   "label": "Upload Picture"
+  },
+  {
+   "fieldname": "sponsored_equipments_section",
+   "fieldtype": "Section Break",
+   "label": "Sponsored Equipments"
+  },
+  {
+   "fieldname": "sponsored_equipments",
+   "fieldtype": "Table",
+   "label": "Sponsored Equipments",
+   "options": "Sponsored Equipments Table"
+  },
+  {
+   "fieldname": "column_break_c0qv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_kpv9",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "unique_equipment",
+   "fieldtype": "Data",
+   "label": "Unique Equipment",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_value",
+   "fieldtype": "Currency",
+   "label": "Total Value",
+   "read_only": 1
+  },
+  {
+   "fieldname": "tab_break_v3ku",
+   "fieldtype": "Tab Break",
+   "label": "Loans"
+  },
+  {
+   "fieldname": "loan",
+   "fieldtype": "Data",
+   "label": "Loan"
+  },
+  {
+   "fieldname": "equipments",
+   "fieldtype": "Data",
+   "label": "Equipment",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_quantity",
+   "fieldtype": "Data",
+   "label": "Total Quantity",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_ndb6",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-03-28 12:21:27.773332",
+ "modified_by": "Administrator",
+ "module": "Farmer",
+ "name": "PUE Sponsor",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

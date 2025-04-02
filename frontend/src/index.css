@@ -1,0 +1,119 @@
+@import './assets/Inter/inter.css';
+@import 'frappe-ui/src/style.css';
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+/* @import url('https://cdn.tailwindcss.com'); */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  display: inline;
+}
+
+label {
+  margin-bottom: 0;
+}
+
+.register-container {
+  display: flex;
+  justify-content: center;
+}
+.register-left {
+  overflow: hidden;
+  margin-left: 15px;
+  height: 510px;
+  position: relative;
+}
+.register-left img {
+  object-fit: cover;
+  border-radius: 20;
+  position: relative;
+}
+.register-right {
+  width: 50%;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20px;
+  position: relative;
+  height: 75vh;
+  overflow-y: auto;
+}
+
+#register-form {
+  max-width: 100%;
+  width: 100%;
+}
+
+.multiform {
+  max-width: 100% !important;
+}
+
+/* Signup Form Width */
+.full-width-login {
+  max-width: 100% !important;
+  max-height: 98%;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+.custom-container {
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  height: 100vh !important;
+  background-color: white !important;
+}
+
+.hide-page-card-head {
+  display: none !important;
+}
+
+.page-card-head {
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.btn-signup {
+  background-color: #eaeef1;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  margin-left: 0.1px;
+}
+
+#register-form-step1 {
+  max-width: 85% !important;
+}
+
+.registration-buttons {
+  position: relative;
+  padding-right: 25px;
+  padding-top: -5px;
+  top: 15px;
+  justify-content: right;
+  display: flex;
+  gap: 10px;
+}

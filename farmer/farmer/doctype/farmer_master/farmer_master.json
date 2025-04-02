@@ -1,0 +1,254 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "FARMER-.####",
+ "creation": "2025-03-12 11:22:48.792817",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "details_section",
+  "farmer",
+  "farmer_name",
+  "phone_number",
+  "status",
+  "column_break_ia6h",
+  "site",
+  "gender",
+  "address",
+  "bank_details_section",
+  "id_type",
+  "id_number",
+  "column_break_tm3z",
+  "bank_name",
+  "account_number",
+  "section_break_9bqz",
+  "crops_processed",
+  "equipments_used",
+  "section_break_naws",
+  "qty_processed_daily",
+  "unit",
+  "section_break_dz6e",
+  "farms",
+  "loans",
+  "loan",
+  "tasks",
+  "task",
+  "products",
+  "products_section",
+  "product_section",
+  "orders",
+  "order",
+  "repayments",
+  "repayment"
+ ],
+ "fields": [
+  {
+   "fieldname": "farmer",
+   "fieldtype": "Link",
+   "label": "Farmer",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "farmer.full_name",
+   "fieldname": "farmer_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Farmer Name"
+  },
+  {
+   "fetch_from": "farmer.phone",
+   "fieldname": "phone_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Phone Number"
+  },
+  {
+   "fetch_from": "farmer.gender",
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "label": "Gender"
+  },
+  {
+   "fieldname": "column_break_ia6h",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "site",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Site ",
+   "options": "Site"
+  },
+  {
+   "fieldname": "farms",
+   "fieldtype": "Table",
+   "label": "Farms",
+   "options": "Farm Table"
+  },
+  {
+   "fetch_from": "farmer.location",
+   "fieldname": "address",
+   "fieldtype": "Data",
+   "label": "Address"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Active\nInactive"
+  },
+  {
+   "fieldname": "loans",
+   "fieldtype": "Tab Break",
+   "label": "Loans"
+  },
+  {
+   "fieldname": "loan",
+   "fieldtype": "Data",
+   "label": "Loan"
+  },
+  {
+   "fieldname": "tasks",
+   "fieldtype": "Tab Break",
+   "label": "Tasks"
+  },
+  {
+   "fieldname": "task",
+   "fieldtype": "Data",
+   "label": "Task"
+  },
+  {
+   "fieldname": "products",
+   "fieldtype": "Tab Break",
+   "label": "Products"
+  },
+  {
+   "fieldname": "orders",
+   "fieldtype": "Tab Break",
+   "label": "Orders"
+  },
+  {
+   "fieldname": "order",
+   "fieldtype": "Data",
+   "label": "Order"
+  },
+  {
+   "fieldname": "repayments",
+   "fieldtype": "Tab Break",
+   "label": "Repayments"
+  },
+  {
+   "fieldname": "repayment",
+   "fieldtype": "Data",
+   "label": "Repayment"
+  },
+  {
+   "fieldname": "section_break_dz6e",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "bank_details_section",
+   "fieldtype": "Section Break",
+   "label": "Bank Details"
+  },
+  {
+   "fieldname": "id_type",
+   "fieldtype": "Select",
+   "label": "ID Type",
+   "options": "National Identity Number\nPermanent Voter's Card\nDriver's License\nInternational Passport"
+  },
+  {
+   "fieldname": "id_number",
+   "fieldtype": "Data",
+   "label": "ID Number"
+  },
+  {
+   "fieldname": "column_break_tm3z",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "bank_name",
+   "fieldtype": "Data",
+   "label": "Bank Name"
+  },
+  {
+   "fieldname": "account_number",
+   "fieldtype": "Data",
+   "label": "Account Number"
+  },
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "section_break_9bqz",
+   "fieldtype": "Section Break",
+   "label": "Processing Details"
+  },
+  {
+   "fieldname": "crops_processed",
+   "fieldtype": "Link",
+   "label": "Crops Processed",
+   "options": "Crops Master"
+  },
+  {
+   "fieldname": "qty_processed_daily",
+   "fieldtype": "Data",
+   "label": "Qty Processed Daily"
+  },
+  {
+   "fieldname": "equipments_used",
+   "fieldtype": "Data",
+   "label": "Equipments Used"
+  },
+  {
+   "fieldname": "section_break_naws",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "unit",
+   "fieldtype": "Link",
+   "label": "Unit",
+   "options": "UOM"
+  },
+  {
+   "fieldname": "products_section",
+   "fieldtype": "Section Break",
+   "label": "Products "
+  },
+  {
+   "fieldname": "product_section",
+   "fieldtype": "Table",
+   "label": "Product Section",
+   "options": "Farmer Product List"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-03-28 19:24:12.152249",
+ "modified_by": "Administrator",
+ "module": "Farmer",
+ "name": "Farmer Master",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,93 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:crop_name",
+ "creation": "2025-03-11 11:30:20.384230",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_b9ok",
+  "crop_name",
+  "uom",
+  "column_break_ssbt",
+  "no_of_farms",
+  "number_of_sites",
+  "section_break_1ltf",
+  "crop_child_table"
+ ],
+ "fields": [
+  {
+   "fieldname": "crop_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Crop Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "no_of_farms",
+   "fieldtype": "Int",
+   "label": "No of Farms",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_ssbt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_b9ok",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "uom",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "UOM",
+   "options": "UOM",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_1ltf",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "crop_child_table",
+   "fieldtype": "Table",
+   "label": "Crop Child Table",
+   "options": "Crop Child Table"
+  },
+  {
+   "fieldname": "number_of_sites",
+   "fieldtype": "Int",
+   "label": "No of Sites",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-03-28 12:16:13.696724",
+ "modified_by": "Administrator",
+ "module": "Farmer",
+ "name": "Crops Master",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "search_fields": "crop_name",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

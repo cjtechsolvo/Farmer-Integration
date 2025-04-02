@@ -1,0 +1,41 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-03-21 17:43:55.010467",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "online"
+ ],
+ "fields": [
+  {
+   "fieldname": "online",
+   "fieldtype": "Data",
+   "label": "Online"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-03-21 17:44:09.985452",
+ "modified_by": "Administrator",
+ "module": "Farmer",
+ "name": "Online Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

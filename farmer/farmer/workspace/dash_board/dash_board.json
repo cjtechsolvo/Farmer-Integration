@@ -1,0 +1,66 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"tWv7FRqF72\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Dash Board</span>\",\"col\":12}},{\"id\":\"uOrJ6wN8Ik\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Farm Master\",\"col\":3}},{\"id\":\"gw4sBa9RV9\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Product\",\"col\":3}},{\"id\":\"pCv1_i9bwi\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Loan Application\",\"col\":3}},{\"id\":\"y-XkORQp4_\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"PUE Sponsor\",\"col\":3}}]",
+ "creation": "2025-03-19 14:10:49.476722",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "dashboard",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Dash Board",
+ "links": [],
+ "modified": "2025-03-26 19:06:31.255383",
+ "modified_by": "Administrator",
+ "module": "Farmer",
+ "name": "Dash Board",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "Farmer"
+  }
+ ],
+ "sequence_id": 22.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "PUE Sponsor",
+   "link_to": "PUE Sponsor",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Farm Master",
+   "link_to": "Farm Master",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Loan Application",
+   "link_to": "Loan Application",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Product",
+   "link_to": "Item",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "Dash Board"
+}
